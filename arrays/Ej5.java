@@ -17,7 +17,7 @@ public class Ej5 {
 		System.out.print("¿Cuántas posiciones tiene el array?: ");
 		// Leemos el número
 		tam = Integer.parseInt(sc.nextLine());
-		// Y cerramos el array
+		// Y cerramos el escáner
 		sc.close();
 		
 		// Llamamos al método que generará el array con tam números aleatorios
