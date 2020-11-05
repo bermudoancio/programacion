@@ -5,7 +5,7 @@ public class Ej10 {
 	public static void main(String[] args) {
 		// {1,3,1,5,4,3,7}
 		// {1,3,5,4,7}
-		int[] elementosDuplicados = {1,3,1,5,4,3,7,8,5,12,1,7,6};
+		int[] elementosDuplicados = {1,3,1,5,4,3,7,8,5,12,1,7,6,-1};
 		//					º		{1,3,,5,4,,7}
 		
 		imprimeArray(elementosDuplicados);
@@ -18,6 +18,7 @@ public class Ej10 {
 	
 	public static int[] eliminaDuplicados(int[] unArray) {
 		int[] arraySinDuplicados;
+		int[] arrayFinal;
 		arraySinDuplicados = new int[unArray.length];
 		
 		int elementosEnNuevoArray = 0;
@@ -31,9 +32,13 @@ public class Ej10 {
 			}
 		}
 		
+		arrayFinal = new int[elementosEnNuevoArray];
 		
+		for (int i = 0; i < arrayFinal.length; i++) {
+			arrayFinal[i] = arraySinDuplicados[i];
+		}
 		
-		return arraySinDuplicados;
+		return arrayFinal;
 	}
 	
 	public static boolean contieneElemento(int[] array, int elemento) {
