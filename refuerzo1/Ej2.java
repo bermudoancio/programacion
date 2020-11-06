@@ -29,7 +29,7 @@ public class Ej2 {
 	}
 	
 	public static int convertirABinario1(int decimal) {
-		String numBinario = "" + ""; //0101 - 1010
+		String numBinario = "" + ""; //1 - 1010
 		numBinario += "";
 		
 		while (decimal > 1) {
