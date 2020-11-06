@@ -19,11 +19,11 @@ public class Ej1 {
 		System.out.println("La suma de los dos números es " + suma(num1, num2));
 	}
 	
-	public static int suma(int num1, int num2) {
-		return num1 + num2;
+	private static int suma(int numeroA, int numeroB) {
+		return numeroA + numeroB;
 	}
 	
-	public static int pedirNumero() {
+	private static int pedirNumero() {
 		System.out.print("Escribe un número: ");
 		return Integer.parseInt(sc.nextLine());
 	}
