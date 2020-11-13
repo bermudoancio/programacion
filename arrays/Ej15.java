@@ -5,17 +5,31 @@ import java.util.Scanner;
 public class Ej15 {
 
 	public static void main(String[] args) {
-		int[] eratostenes;
-		int tamArray;
+		boolean[] eratostenes;
+		int ultimoNumero;
 		
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("Introduce el número máximo para saber los primos: ");
-		tamArray = Integer.parseInt(sc.nextLine());
+		ultimoNumero = Integer.parseInt(sc.nextLine());
 		
-		eratostenes = new int[tamArray];
+		sc.close();
 		
-		// 
+		eratostenes = new boolean[ultimoNumero + 1];
+		
+		for (int i = 2; i <= ultimoNumero/2; i++) {
+			if (!eratostenes[i]) {
+				for (int j = 2; j <= (ultimoNumero/i); j++) {
+					eratostenes[i * j] = true;
+				}
+			}
+		}
+		
+		for (int i = 2; i < eratostenes.length; i++) {
+			if (!eratostenes[i]) {
+				System.out.printf("%2d ", i);
+			}
+		}
 	}
 
 }
