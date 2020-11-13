@@ -1,4 +1,4 @@
-package arrays;
+package boletin_03_arrays
 
 /**
  * Crea un programa que sume todas las posiciones pares de un array de enteros.

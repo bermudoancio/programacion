@@ -1,4 +1,4 @@
-package arrays;
+package boletin_03_arrays
 
 import java.util.Random;
 import java.util.Scanner;

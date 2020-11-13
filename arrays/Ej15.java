@@ -1,4 +1,4 @@
-package arrays;
+package boletin_03_arrays
 
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ public class Ej15 {
 		eratostenes = new boolean[ultimoNumero + 1];
 		
 		for (int i = 2; i <= ultimoNumero/2; i++) {
-			if (!eratostenes[i]) {
+			if (eratostenes[i] != true) {
 				for (int j = 2; j <= (ultimoNumero/i); j++) {
 					eratostenes[i * j] = true;
 				}

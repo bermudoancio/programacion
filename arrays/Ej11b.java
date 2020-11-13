@@ -1,4 +1,4 @@
-package arrays;
+package boletin_03_arrays
 
 public class Ej11b {
 
