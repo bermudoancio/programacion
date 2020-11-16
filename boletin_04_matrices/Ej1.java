@@ -33,15 +33,15 @@ public class Ej1 {
 		 * 	- todavía no hemos recorrido todas las filas y columnas
 		 *  - todavía no hemos encontrado números negativos
 		 */
-		int i = 0;
-		while (i < )
-		for (int i = 0; i < matriz.length && !hayNegativos; i++) {
-			for (int j = 0; j < matriz[i].length && !hayNegativos; j++) {
+		int i = 0, j = 0;
+		while (i < matriz.length && !hayNegativos) {
+			while (j < matriz[i].length && !hayNegativos) {
 				if (matriz[i][j] < 0) {
 					hayNegativos = true;
 				}
 			}
 		}
+		
 		
 		return hayNegativos;
 	}
