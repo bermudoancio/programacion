@@ -82,10 +82,29 @@ public class Maquina {
 				+ "\n5. Apagar máquina y salir";
 	}
 	
-	public void servirProducto(int option) {
-		switch (option) {
-		case 1:
-			
+	public void servirProducto(int opcion) {
+		double precioProducto = 0;
+		
+		// Restamos un vaso
+		this.vasosRestantes--;
+		
+		switch (opcion) {
+		case Maquina.OPCION_CAFE:
+			this.dosisCafes--;
+			precioProducto = PRECIO_CAFE;
+			break;
+		case Maquina.OPCION_LECHE:
+			this.dosisLeche--;
+			precioProducto = PRECIO_LECHE;
+			break;
+		case Maquina.OPCION_CAFE_LECHE:
+			this.dosisCafes--;
+			this.dosisLeche--;
+			precioProducto = PRECIO_CAFE_LECHE;
+			break;
 		}
+		
+		// Actualizamos el monedero
+		this.monedero += precioProducto;
 	}
 }
