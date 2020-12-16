@@ -24,8 +24,15 @@ public class Ej3 {
 		for (int i = 0; i < sb.length(); i++) {
 			if (sb.charAt(i) == ' ') {
 				sb.delete(i, i+1);
+				i--;
 			}
 		}
+		
+		/*for (int i = 1; i < sb.length(); i++) {
+			while (sb.charAt(i-1) == ' ' && i < sb.length()) {
+				sb.delete(i-1, i);
+			}
+		}*/
 		
 		if (sb.toString().equals(sb.reverse().toString())) {
 			esPalindromo = true;
