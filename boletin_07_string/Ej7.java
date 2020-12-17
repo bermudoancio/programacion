@@ -14,6 +14,12 @@ public class Ej7 {
 		System.out.println(devuelveCadenaConsonantesVocales(frase));
 	}
 	
+	/**
+	 * Crea una cadena a partir de la frase inicial donde se muestran
+	 * primero las consonantes y luego las vocales, sin espacios (ni números)
+	 * @param frase
+	 * @return
+	 */
 	public static String devuelveCadenaConsonantesVocales(String frase) {
 		StringBuilder vocales = new StringBuilder();
 		StringBuilder consonantes = new StringBuilder();
