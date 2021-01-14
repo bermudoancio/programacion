@@ -26,7 +26,7 @@ public class Maquina {
 		this.monedero = MINIMO_MONEDERO;
 	}
 	
-	public Maquina(int dosisCafe, int dosisLeche, int vasosIniciales) {
+	public Maquina(int dosisCafe, int dosisLeche, int vasosIniciales) throws ParametroNoValidoException {
 		this.setDosisCafe(dosisCafe);
 		
 	}
@@ -37,10 +37,12 @@ public class Maquina {
 		this.vasosRestantes = MAX_VASOS;
 	}
 	
-	private void setDosisCafe(int dosis) {
-		if (dosis > 0 && dosis <= MAX_CAFE) {
-			this.dosisCafes = dosis;
+	private void setDosisCafe(int dosis) throws ParametroNoValidoException{
+		
+		if (dosis <= 0 || dosis > MAX_CAFE) {
+			throw new ParametroNoValidoException("No puedo poner dicha cantidad de dosis de café");
 		}
+		this.dosisCafes = dosis;
 	}
 	
 	public int getDosisCafes() {

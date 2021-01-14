@@ -5,38 +5,46 @@ import java.util.Scanner;
 public class PrincipalMaquina {
 	
 	private static Scanner sc = new Scanner(System.in);
-
+	
 	public static void main(String[] args) {
-		Maquina m1 = new Maquina();
+		try {
+			Maquina m1 = new Maquina(-1, 2, 1);
 		
-		int opcion;
-		
-		do {
-			System.out.println(m1.mostrarMenu());
-			System.out.print("Seleccione una opción: ");
-			opcion = Integer.parseInt(sc.nextLine());
 			
-			// Guardamos el dinero introducido por el cliente
-			double dineroIntroducido = 0;
+			int opcion;
 			
-			switch (opcion) {
-			case Maquina.OPCION_CAFE:
-			case Maquina.OPCION_LECHE:
-			case Maquina.OPCION_CAFE_LECHE:
-				if (controlaExistencia(m1, opcion)) {
-					procesaOpcion(m1, opcion);
+			do {
+				System.out.println(m1.mostrarMenu());
+				System.out.print("Seleccione una opción: ");
+				opcion = Integer.parseInt(sc.nextLine());
+				
+				// Guardamos el dinero introducido por el cliente
+				double dineroIntroducido = 0;
+				
+				switch (opcion) {
+				case Maquina.OPCION_CAFE:
+				case Maquina.OPCION_LECHE:
+				case Maquina.OPCION_CAFE_LECHE:
+					if (controlaExistencia(m1, opcion)) {
+						procesaOpcion(m1, opcion);
+					}
+					break;
+				case Maquina.OPCION_ESTADO:
+					System.out.println(m1);
+					break;
+				case Maquina.OPCION_APAGAR:
+					break;
+				default:
+					System.out.println("Opción no válida");
 				}
-				break;
-			case Maquina.OPCION_ESTADO:
-				System.out.println(m1);
-				break;
-			case Maquina.OPCION_APAGAR:
-				break;
-			default:
-				System.out.println("Opción no válida");
-			}
+			
+			} while (opcion != Maquina.OPCION_APAGAR);
+		}
+		catch (ParametroNoValidoException ex) {
+			System.out.println(ex.getMessage());
+		}
 		
-		} while (opcion != Maquina.OPCION_APAGAR);
+		
 	}
 	
 	public static double controlarDinero(int opcion) {
