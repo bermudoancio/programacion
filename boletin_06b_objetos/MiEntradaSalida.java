@@ -110,6 +110,52 @@ public class MiEntradaSalida {
 		return c;
 	}
 	
+	public static char solicitarCaracterSN(String mensaje) {
+		char c = '0';
+		
+		// Variable que almacenará un booleano que indicará si se le debe volver a pedir el dato al usuario.
+		boolean flag = true;
+		
+		while(flag) {
+			// Pedimos el entero por pantalla.
+			System.out.println(mensaje);
+			// Comprobamos si el usuario está introduciendo algo correcto usando la excepción del método parseInt.
+			
+			String cadena = sc.nextLine();
+			
+			if (cadena.length() == 1) {
+				c = cadena.toUpperCase().charAt(0);
+				
+				if (c == 'S' || c == 'N') {
+					// Si llegamos hasta aquí, es porque el usuario ha introducido un dato correcto y no se ha lanzado ninguna excepción.
+					flag = false;
+				}
+			}			
+		}
+		
+		return c;
+	}
 	
+	public static String solicitarCadena(String mensaje) {
+		String cadena = "";
+		
+		// Variable que almacenará un booleano que indicará si se le debe volver a pedir el dato al usuario.
+		boolean flag = true;
+		
+		while(flag) {
+			// Pedimos el string por pantalla.
+			System.out.println(mensaje);
+			// Comprobamos si el usuario está introduciendo algo correcto usando la excepción del método parseInt.
+			
+			cadena = sc.nextLine();
+			
+			if (cadena.length() > 0) {
+				// Si llegamos hasta aquí, es porque el usuario ha introducido un dato correcto y no se ha lanzado ninguna excepción.
+				flag = false;
+			}			
+		}
+		
+		return cadena;
+	}
 	
 }
