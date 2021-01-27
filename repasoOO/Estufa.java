@@ -8,4 +8,17 @@ public class Estufa extends Electrodomestico {
 		
 		this.numeroFases = numeroFases;
 	}
+	
+	public void imprimeEstufa() {
+		System.out.println("soy una estufa");
+	}
+	
+	public double calculaConsumo() {
+		// Para calcular el consumo, necesito saber:
+		//	1º- El tiempo que ha estado encendido el electrodoméstico
+		//  2º- El consumo del electrodoméstico
+		long tiempoEnHoras = (this.getTiempoTotal() / 1000) / 3600;
+		
+		return this.getConsumoWh() * numeroFases * tiempoEnHoras;
+	}
 }

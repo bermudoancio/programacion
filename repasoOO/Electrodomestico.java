@@ -1,6 +1,6 @@
 package repasoOO;
 
-public class Electrodomestico {
+public abstract class Electrodomestico {
 	
 	private double consumoWh;
 	private String nombre;
@@ -59,13 +59,15 @@ public class Electrodomestico {
 		return tiempoEncendido * 3600;
 	}
 	
-	public double calculaConsumo() {
-		// Para calcular el consumo, necesito saber:
-		//	1º- El tiempo que ha estado encendido el electrodoméstico
-		//  2º- El consumo del electrodoméstico
-		long tiempoEnHoras = (this.getTiempoTotal() / 1000) / 3600;
-		
-		return this.consumoWh * tiempoEnHoras;
-	}
+//	public double calculaConsumo() {
+//		// Para calcular el consumo, necesito saber:
+//		//	1º- El tiempo que ha estado encendido el electrodoméstico
+//		//  2º- El consumo del electrodoméstico
+//		long tiempoEnHoras = (this.getTiempoTotal() / 1000) / 3600;
+//		
+//		return this.consumoWh * tiempoEnHoras;
+//	}
+	
+	public abstract double calculaConsumo();
 	
 }
