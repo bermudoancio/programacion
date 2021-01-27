@@ -53,11 +53,15 @@ public class Casa {
 	public double getDineroAPagarPorElectricidad(double precioKWh) {
 		double totalAPagar = 0;
 		
-		for (int i = 0; i < this.electrodomesticos.length; i++) {
+		for (int i = 0; i < this.electrodomesticos.length; i++) { 
+			
 			
 			if (this.electrodomesticos[i] instanceof Estufa) {
 				((Estufa) this.electrodomesticos[i]).imprimeEstufa();
 			}
+			
+						
+			this.electrodomesticos[i].imprimeQuienEres();
 			
 			double precioAPagarPorEsteElectrodomestico = ((this.electrodomesticos[i].calculaConsumo() / 1000) * precioKWh);
 			

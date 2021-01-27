@@ -16,4 +16,5 @@ public class Frigorifico extends Electrodomestico {
 		return this.getConsumoWh() * tiempoEnHoras;
 	}
 
+
 }

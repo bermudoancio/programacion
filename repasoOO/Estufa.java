@@ -21,4 +21,8 @@ public class Estufa extends Electrodomestico {
 		
 		return this.getConsumoWh() * numeroFases * tiempoEnHoras;
 	}
+	
+	public void imprimeQuienEres() {
+		System.out.println("Soy una estufa");
+	}
 }

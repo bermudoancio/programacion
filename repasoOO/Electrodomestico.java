@@ -24,6 +24,10 @@ public abstract class Electrodomestico {
 	public double getConsumoWh() {
 		return consumoWh;
 	}
+	
+	public void imprimeQuienEres() {
+		System.out.println("Soy un electrodomestico");
+	}
 
 	/**
 	 * @return the nombre
