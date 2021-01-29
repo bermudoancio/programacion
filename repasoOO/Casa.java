@@ -27,7 +27,7 @@ public class Casa {
 		}
 		
 		
-		System.out.println(c.getDineroAPagarPorElectricidad(11.03));
+		System.out.println(c.getDineroAPagarPorElectricidad(0.1176));
 	}
 	
 	public Casa(String calle, int numero) {
