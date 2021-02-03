@@ -106,21 +106,35 @@ public class CuentaCredito extends Cuenta{
   }
   
   
-  /*
-  
-  //TODO: hacer
+  @Override
   public void realizarIngreso(double ingreso) throws CuentaException {
     if(ingreso <= 0) {
       throw new CuentaException("Solo pueden ingresarse cantidades positivas.");
     }
     
-    if(this.getSaldo() < 0) {
-      
-      if(ingreso + this.creditoConsumido < )
+    if (this.creditoConsumido > 0) {
+      if (this.creditoConsumido - ingreso >= 0) {
+    	// Ingreso menos del crédito que debo
+    	this.creditoConsumido -= ingreso; // this.creditoConsumido - ingreso
+    	this.contadorIngresoNoRegistrado++;
+      }
+      else {
+    	super.realizarIngreso(ingreso - this.creditoConsumido);
+    	this.creditoConsumido = 0;
+      }
+    }
+    else {
+      // No he consumido crédito alguno, recargo sólo el saldo
+      super.realizarIngreso(ingreso);
     }
     
   }
-  */
+  
+  @Override
+  public int getContadorIngresos() {
+	return super.getContadorIngresos() + this.contadorIngresoNoRegistrado;
+  }
+  
   
   /**
    * El saldo del padre menos el credito consumido hasta el momento
