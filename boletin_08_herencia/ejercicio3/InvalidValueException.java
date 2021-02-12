@@ -14,14 +14,6 @@ public class InvalidValueException extends Exception {
 		return this.mensajes;
 	}
 	
-	public int getNumeroMensajes() {
-		
-		for (int i = 0; i < this.mensajes.length; i++) {
-			if (this.mensajes[i] == null) {
-				return i;
-			}
-		}
-	}
 	
   public InvalidValueException() {
 	  mensajes = new String[10];

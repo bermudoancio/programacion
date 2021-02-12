@@ -1,6 +1,6 @@
 package boletin_08_herencia.ejercicio3;
 
-public class Personaje {
+public abstract class Personaje {
 	
 	public static enum Raza {
 		HUMANO, ELFO, ENANO, ORCO
@@ -17,23 +17,18 @@ public class Personaje {
 	private int fuerza, inteligencia, puntos_vida_max, puntos_vida_actuales;
 	
 	
-	public Personaje(String nombre, Raza raza, int fuerza, int inteligencia, int puntos_vida_max,
-			int puntos_vida_actuales) throws InvalidValueException {
+	public Personaje(String nombre, Raza raza, int fuerza, int inteligencia, int puntos_vida_max) throws InvalidValueException {
 				
 		this.setNombre(nombre);	
 		this.setRaza(raza);	
 		this.setFuerza(fuerza);
 		this.setInteligencia(inteligencia);
 		this.setPuntos_vida_max(puntos_vida_max);
-		this.setPuntos_vida_actuales(puntos_vida_actuales);
+		this.setPuntos_vida_actuales(puntos_vida_max);
 		
 
 	}
 	
-	public static Raza getUnaRaza() {
-		return null;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -67,7 +62,7 @@ public class Personaje {
 		this.fuerza = fuerza;
 	}
 	
-	private static boolean checkValidStat(int value, int minValue, int maxValue) {
+	protected static boolean checkValidStat(int value, int minValue, int maxValue) {
 		boolean valid = true;
 		if (value < minValue || value > maxValue) {
 			valid = false;
@@ -102,10 +97,17 @@ public class Personaje {
 		return puntos_vida_actuales;
 	}
 
-	public void setPuntos_vida_actuales(int puntos_vida_actuales) throws InvalidValueException {
-		if (!Personaje.checkValidStat(puntos_vida_actuales, Personaje.MIN_PUNTOS_VIDA, this.puntos_vida_max)) {
-			throw new InvalidValueException("Los puntos de vida deben estar entre " + Personaje.MIN_PUNTOS_VIDA + " y " + this.puntos_vida_max);
+	public void setPuntos_vida_actuales(int puntos_vida_actuales) {
+//		if (!Personaje.checkValidStat(puntos_vida_actuales, Personaje.MIN_PUNTOS_VIDA, this.puntos_vida_max)) {
+//			throw new InvalidValueException("Los puntos de vida deben estar entre " + Personaje.MIN_PUNTOS_VIDA + " y " + this.puntos_vida_max);
+//		}
+		if (puntos_vida_actuales < Personaje.MIN_PUNTOS_VIDA) {
+			puntos_vida_actuales = Personaje.MIN_PUNTOS_VIDA;
 		}
+		else if (puntos_vida_actuales > this.puntos_vida_max) {
+			puntos_vida_actuales = this.puntos_vida_max;
+		}
+		
 		this.puntos_vida_actuales = puntos_vida_actuales;
 	}
 
@@ -114,6 +116,24 @@ public class Personaje {
 		return "Personaje [nombre=" + nombre + ", raza=" + raza + ", fuerza=" + fuerza + ", inteligencia="
 				+ inteligencia + ", puntos_vida_max=" + puntos_vida_max + ", puntos_vida_actuales="
 				+ puntos_vida_actuales + "]";
+	}
+	
+	public void beDamaged(int points) throws InvalidValueException {
+		if (points > 0) {
+			this.setPuntos_vida_actuales(this.getPuntos_vida_actuales() - points);
+		}
+		else {
+			throw new InvalidValueException("No me hagas trampas");
+		}
+	}
+	
+	public void beHealed(int points) throws InvalidValueException {
+		if (points > 0) {
+			this.setPuntos_vida_actuales(this.getPuntos_vida_actuales() + points);
+		}
+		else {
+			throw new InvalidValueException("No me hagas trampas");
+		}
 	}
 	
 }
