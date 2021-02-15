@@ -12,7 +12,7 @@ public class Mago extends Personaje {
 	// Array donde guardaremos los hechizos aprendidos
 	private String[] hechizos;
 
-	public Mago(String nombre, Raza raza, int fuerza, int inteligencia, int puntos_vida_max, int puntos_vida_actuales)
+	public Mago(String nombre, Raza raza, int fuerza, int inteligencia, int puntos_vida_max)
 			throws InvalidValueException {
 		super(nombre, raza, fuerza, inteligencia, puntos_vida_max);
 		
