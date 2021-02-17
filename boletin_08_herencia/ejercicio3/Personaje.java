@@ -1,6 +1,6 @@
 package boletin_08_herencia.ejercicio3;
 
-public abstract class Personaje {
+public abstract class Personaje implements Comparable<Personaje> {
 	
 	public static enum Raza {
 		HUMANO, ELFO, ENANO, ORCO
@@ -134,6 +134,10 @@ public abstract class Personaje {
 		else {
 			throw new InvalidValueException("No me hagas trampas");
 		}
+	}
+	
+	public int compareTo(Personaje p) {
+		return this.getPuntos_vida_actuales() - p.getPuntos_vida_actuales();
 	}
 	
 }

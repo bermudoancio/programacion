@@ -91,7 +91,12 @@ public class Main {
 					System.out.print("Introduzca el hechizo que desea aprender: ");
 					String nombreHechizo = sc.nextLine();
 					try {
-						((Mago) personaje).aprendeHechizo(nombreHechizo);
+						if (!((Mago) personaje).aprendeHechizo(nombreHechizo)) {
+							System.out.println("El mago no ha podido aprender el hechizo");
+						}
+						else {
+							System.out.println("El mago ha aprendido el hechizo " + nombreHechizo);
+						}
 					} catch (InvalidValueException e) {
 						System.out.println(e.getMessage());
 					}
@@ -102,19 +107,76 @@ public class Main {
 				}
 				break;
 			case 3:
-				personajeEncontrado();
-				if (personajeEncontrado().getNombre() != personajeEncontrado().getNombre()) {
-					System.out.print("Introduce el nombre del hechizo que desea lanzar: ");
-					String hechizo = sc.nextLine();
-					try {
-						personajeEncontrado().lanzaHechizo(personajeEncontrado(), hechizo);
-					} catch (InvalidValueException e) {
-						System.out.println(e.getMessage());
+				System.out.print("Introduce el nombre del mago: ");
+				Personaje personajeCaso3 = personajeEncontrado();
+				if (personajeCaso3 != null && personajeCaso3 instanceof Mago) {
+					Personaje pRecibeHechizo = null;
+					do {
+						System.out.print("¿A quién le quieres lanzar el hechizo?: ");
+						pRecibeHechizo = personajeEncontrado();
+						if (pRecibeHechizo != null && pRecibeHechizo.getNombre().equals(personajeCaso3.getNombre())) {
+							System.out.println("No te puedes lanzar un hechizo a tí mismo");
+						}
+					}
+					while (pRecibeHechizo != null && pRecibeHechizo.getNombre().equals(personajeCaso3.getNombre()));
+					 
+					if (pRecibeHechizo == null) {
+						System.out.println("El personaje buscado no existe");
+					}
+					else {
+						System.out.print("Introduce el nombre del hechizo que desea lanzar: ");
+						String hechizo = sc.nextLine();
+						try {
+							((Mago)personajeCaso3).lanzaHechizo(pRecibeHechizo, hechizo);
+							System.out.println("El personaje " + pRecibeHechizo.getNombre() + " tiene ahora " + pRecibeHechizo.getPuntos_vida_actuales() + " puntos de vida");
+						} catch (InvalidValueException e) {
+							System.out.println(e.getMessage());
+						}
 					}
 				}
-
+				else {
+					System.out.println("Tienes que introducir el nombre de un mago");
+				}
+				
+				break;
+				
+			case 4:
+				// Clérigo cura a mago
+				System.out.print("Introduce el nombre del mago: ");
+				Personaje clerigoCase4 = personajeEncontrado();
+				if (clerigoCase4 != null && clerigoCase4 instanceof Clerigo) {
+					System.out.print("Introduce el nombre del mago a curar: ");
+					Personaje magoCase4 = personajeEncontrado();
+					
+					if (magoCase4 != null && magoCase4 instanceof Mago) {
+						((Clerigo)clerigoCase4).curar(magoCase4);
+					}
+					else {
+						System.out.println("Tienes que introducir el nombre de un mago");
+					}
+					
+				}
+				else {
+					System.out.println("Tienes que introducir el nombre de un clérigo");
+				}
+				
+				break;
+			
+			case 5:
+				
+				for (Personaje p5: Main.personaje) {
+					if (p5 != null) {
+						System.out.println(p5);
+					}
+				}
+				
+				break;
+			
+			
+			case 6:
+				Arrays.sort(//aqui va un array);
+				break;
 			}
-
 		}
 	}
 
@@ -223,7 +285,7 @@ public class Main {
 		boolean nombreEncontrado = false;
 		for (int i = 0; i < Main.personaje.length && !nombreEncontrado; i++) {
 			if (Main.personaje[i] != null
-					&& Main.personaje[i].getNombre().equalsIgnoreCase(Main.personaje[i].getNombre())) {
+					&& p.getNombre().equalsIgnoreCase(Main.personaje[i].getNombre())) {
 				nombreEncontrado = true;
 			}
 		}
@@ -251,11 +313,10 @@ public class Main {
 			if (Main.personaje[i] != null && nombrePersonaje.equalsIgnoreCase(Main.personaje[i].getNombre())) {
 				personaje = Main.personaje[i];
 				personajeEncontrado = true;
-			} else {
-				System.out.print("Ese personaje no existe. Introduzca el nombre de un personaje existente: ");
 			}
 
 		}
+		
 		return personaje;
 	}
 
