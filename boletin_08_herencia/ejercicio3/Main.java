@@ -1,6 +1,8 @@
 package boletin_08_herencia.ejercicio3;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 import boletin_08_herencia.ejercicio3.Personaje.Raza;
@@ -35,7 +37,7 @@ public class Main {
 	static Personaje[] personaje = new Personaje[100];
 
 	public static void main(String[] args) {
-
+		
 		Scanner sc = new Scanner(System.in);
 
 		int opcion = 0;
@@ -174,7 +176,8 @@ public class Main {
 			
 			
 			case 6:
-				Arrays.sort(//aqui va un array);
+//				Arrays.sort(Main.personaje, new PuntosVidaComparator());
+				Arrays.sort(Main.personaje, Comparator.nullsLast(new PuntosVidaInvertedComparator()));
 				break;
 			}
 		}
@@ -188,10 +191,10 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		char opcionElegida = 't';
 		while (opcionElegida != 'M' && opcionElegida != 'C') {
-			System.out.println("Introduzca \"M\" para mago y \"C\" para cl�rigo.");
+			System.out.println("Introduzca \"M\" para mago y \"C\" para clérigo.");
 			opcionElegida = sc.nextLine().toUpperCase().charAt(0);
 			if (opcionElegida != 'M' && opcionElegida != 'C') {
-				System.out.println("Introduzca una opci�n correcta.");
+				System.out.println("Introduzca una opción correcta.");
 			}
 		}
 
