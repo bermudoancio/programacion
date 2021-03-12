@@ -139,5 +139,6 @@ public abstract class Personaje implements Comparable<Personaje> {
 	public int compareTo(Personaje p) {
 		return this.getPuntos_vida_actuales() - p.getPuntos_vida_actuales();
 	}
+
 	
 }

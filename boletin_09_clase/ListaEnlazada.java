@@ -1,4 +1,4 @@
-package boletines_09_colecciones;
+package boletin_09_clase;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -6,22 +6,19 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-
 public class ListaEnlazada<E> implements List<E> {
-	
-	// El n�mero de elementos que contiene actualmente la lista
+
 	private int numElementos;
-	// El primer nodo de la lista
+	
+	// Apuntador al primer y al último nodo
 	private Nodo<E> primero;
-	// El �ltimo nodo de la lista
 	private Nodo<E> ultimo;
-
+	
 	public ListaEnlazada() {
-		this.numElementos = 0;
-		this.primero = null;
-		this.ultimo = null;
+		// Inicializar el número de elementos a 0
+		numElementos = 0;
 	}
-
+	
 	@Override
 	public int size() {
 		return numElementos;
@@ -34,7 +31,8 @@ public class ListaEnlazada<E> implements List<E> {
 
 	@Override
 	public boolean contains(Object o) {
-		return this.indexOf(o) != -1;
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
@@ -56,16 +54,17 @@ public class ListaEnlazada<E> implements List<E> {
 
 	@Override
 	public boolean add(E e) {
-		Nodo<E> n = new Nodo<>(e);
 		
-		if (primero == null) {
-			primero = n;
-			ultimo = n;
+		Nodo<E> nuevo = new Nodo<>(e);
+		
+		if (this.isEmpty()) {
+			primero = nuevo;
+			ultimo = nuevo;
 		}
 		else {
-			ultimo.setSiguiente(n);
-			n.setAnterior(ultimo);
-			ultimo = n;
+			ultimo.setSiguiente(nuevo);
+			nuevo.setAnterior(ultimo);
+			ultimo = nuevo;
 		}
 		
 		numElementos++;
@@ -117,21 +116,8 @@ public class ListaEnlazada<E> implements List<E> {
 
 	@Override
 	public E get(int index) {
-		Nodo<E> t;
-		if (index < numElementos / 2) {
-			t = primero;
-			for (int i = 0; i < index; i++) {
-				t = t.getSiguiente();
-			}
-		}
-		else {
-			t = ultimo;
-			for (int i = numElementos - 1; i > index; i--) {
-				t = t.getAnterior();
-			}
-		}
-		
-		return t.getElemento();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -155,18 +141,17 @@ public class ListaEnlazada<E> implements List<E> {
 	@Override
 	public int indexOf(Object o) {
 		int indice = -1;
-		int indiceTemporal = 0;
+		int indiceTemp = 0;
 		
-		// Suponemos que o nunca es null
-		for (Nodo<E> n = primero; n != null && indice == -1; n = n.getSiguiente()) {
-			if (o == null && n.getElemento() == null || n.getElemento().equals(o)) {
-				indice = indiceTemporal;
+		for (Nodo<E> x = primero; x != null && indice == -1; x = x.getSiguiente()) {
+			
+			if (o == null && x.getElemento() == null || x.getElemento().equals(o)) {
+				indice = indiceTemp;
 			}
-			else {
-				indiceTemporal++;
-			}
+			
+			indiceTemp++;
 		}
-		
+				
 		return indice;
 	}
 
@@ -194,78 +179,50 @@ public class ListaEnlazada<E> implements List<E> {
 		return null;
 	}
 	
+	
 	protected class ListaEnlazadaIterator implements Iterator<E> {
 
 		private Nodo<E> ultimoDevuelto;
-        private Nodo<E> siguiente;
-        private int indice;
+		private int objetosDevueltos;
 		
-		protected ListaEnlazadaIterator() {
-			indice = 0;
+		public ListaEnlazadaIterator() {
+			objetosDevueltos = 0;
 		}
 		
 		@Override
 		public boolean hasNext() {
-			return (indice < numElementos);
+			/*
+			 * ListaEnlazada.this hace referencia al objeto ListaEnlazada
+			 * que envuelve a este iterador en concreto. En este caso, al 
+			 * no haber conflicto de nombres con la clase interna, no sería
+			 * necesario y se podría obviar.
+			 */
+			return objetosDevueltos < ListaEnlazada.this.numElementos;
 		}
 
 		@Override
 		public E next() {
-			if (indice >= numElementos) {
-				// Han llamado a next sin hacer antes hasNext y ya no hab�a m�s elementos
-				throw new NoSuchElementException();
-			}
 			
-			// Si nunca se hab�a llamado a next
+			// Esta comprobación es equivalente a la realizada abajo
+//			if (objetosDevueltos >= numElementos) {
+//				throw new NoSuchElementException();
+//			}
+			
 			if (ultimoDevuelto == null) {
 				ultimoDevuelto = primero;
 			}
 			else {
-				// En otro caso, cogemos el siguiente
 				ultimoDevuelto = ultimoDevuelto.getSiguiente();
 			}
 			
-			// Movemos el �ndice por el que vamos recorriendo
-			indice++;
-			
-			// Y devolvemos el elemento
-			return ultimoDevuelto.getElemento();
-		}
-		
-		@Override
-		public void remove() {
-			// Si llaman a remove sin hacer un next()
 			if (ultimoDevuelto == null) {
 				throw new NoSuchElementException();
 			}
 			
-			Nodo<E> sig = ultimoDevuelto.getSiguiente();
-			Nodo<E> ant = ultimoDevuelto.getAnterior();
+			// Vamos a devolver un objeto más
+			objetosDevueltos++;
 			
-			if (ant == null) {
-				// Era el primero
-				primero = sig;
-			}
-			else {
-				ant.setSiguiente(sig);
-			}
-			
-			if (sig == null) {
-				// Era el �ltimo
-				ultimo = ant;
-			}
-			else {
-				sig.setAnterior(ant);
-			}
-			
-			// puntero ahora debe ser nulo
-			ultimoDevuelto = null;
-			
-			// El tama�o de la lista se ha reducido
-			numElementos--;
-			
-			// Decrementamos tambi�n el �ndice que indica el elemento que iteramos
-			indice--;
+			return ultimoDevuelto.getElemento();
 		}
 		
 	}

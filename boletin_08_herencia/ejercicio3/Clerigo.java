@@ -1,6 +1,8 @@
 package boletin_08_herencia.ejercicio3;
 
-public class Clerigo extends Personaje {
+import java.util.Random;
+
+public class Clerigo extends Personaje implements IRezable {
 	
 	public static final int CLERIGO_MIN_FUERZA = 18;
 	public static final int CLERIGO_MIN_INTEL = 12;
@@ -8,12 +10,14 @@ public class Clerigo extends Personaje {
 	public static final int CLERIGO_PUNTOS_CURACION = 10;
 	
 	private String dios;
+	public int puntosExtra;
 	
 	
 	public Clerigo(String nombre, Raza raza, int fuerza, int inteligencia, int puntos_vida_max, String dios)
 			throws InvalidValueException {
 		super(nombre, raza, fuerza, inteligencia, puntos_vida_max);
 		this.dios = dios;
+		this.puntosExtra = 0;
 	}
 
 	@Override
@@ -33,13 +37,19 @@ public class Clerigo extends Personaje {
 	}
 	
 	public void curar(Personaje p) {
-		p.setPuntos_vida_actuales(p.getPuntos_vida_actuales() + Clerigo.CLERIGO_PUNTOS_CURACION);
+		p.setPuntos_vida_actuales(p.getPuntos_vida_actuales() + Clerigo.CLERIGO_PUNTOS_CURACION + this.puntosExtra);
 		//p.beHealed(Clerigo.CLERIGO_PUNTOS_CURACION);
 	}
 
 	@Override
 	public String toString() {
 		return super.toString() + System.lineSeparator() + "Clerigo [dios=" + dios + "]";
+	}
+
+	@Override
+	public void rezar() {
+		Random r = new Random();
+		this.puntosExtra += r.nextInt(2) + 1;
 	}
 	
 	

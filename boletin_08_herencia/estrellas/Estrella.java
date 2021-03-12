@@ -54,7 +54,15 @@ public class Estrella {
 		return planetoidesHabitables;
 	}
 
-	private boolean esHabitable(Planetoide p, double distanciaEstrella) {
+	/**
+	 * Aquí loo que hace el método
+	 * @param p explicación breve del parámetro
+	 * @param distanciaEstrella 
+	 * @return explicación de lo que se devuelve 
+	 * @throws Exception si pasa no se qué
+	 */
+	private boolean esHabitable(Planetoide p, double distanciaEstrella) throws Exception {
+		// Aquí voy haciendo esto....
 		boolean esHabitable = false;
 		if (p.getTipo().equals(TipoPlaneta.ROCOSO) 
 				&& distanciaEstrella >= this.getTipo().getDistanciaMinimaZonaHabitable()
