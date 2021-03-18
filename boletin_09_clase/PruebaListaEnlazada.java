@@ -22,7 +22,10 @@ public class PruebaListaEnlazada {
 		
 		while (it.hasNext()) {
 			Integer i = it.next();
-			System.out.println(i);
+			
+			if (i.equals(3)) {
+				it.remove();
+			}
 		}
 		
 	}
