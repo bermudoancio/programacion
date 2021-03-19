@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class Equipo {
+public class EquipoGenerico<T> {
 	private String nombre;
-	private Set<Alumno> jugadores;
+	private Set<T> jugadores;
 	
-	public Equipo(String nombre) {
+	public EquipoGenerico(String nombre) {
 		this.nombre = nombre;
 		this.jugadores = new HashSet<>();
 	}
@@ -17,23 +17,23 @@ public class Equipo {
 		return nombre;
 	}
 
-	public Set<Alumno> getJugadores() {
+	public Set<T> getJugadores() {
 		return jugadores;
 	}
 
-	public void add(Alumno a) throws EquipoException {
+	public void add(T a) throws EquipoException {
 		if (!this.jugadores.add(a)) {
 			throw new EquipoException("No se ha podido añadir al jugador");
 		}
 	}
 	
-	public void borrar(Alumno a) throws EquipoException {
+	public void borrar(T a) throws EquipoException {
 		if (!this.jugadores.remove(a)) {
 			throw new EquipoException("No se ha podido borrar al jugador");
 		}
 	}
 	
-	public Alumno pertenece (Alumno a) {
+	public T pertenece (T a) {
 		if (this.jugadores.contains(a)) {
 			return a;
 		}
@@ -42,9 +42,9 @@ public class Equipo {
 		}
 	}
 	
-	public Alumno pertenece2 (Alumno a) {
+	public T pertenece2 (T a) {
 				
-		for (Alumno x : this.jugadores) {
+		for (T x : this.jugadores) {
 			if (x != null && x.equals(a)) {
 				return x;
 			}
@@ -53,11 +53,11 @@ public class Equipo {
 		return null;
 	}
 	
-	public Alumno pertenece3 (Alumno a) {
-		Alumno x = null;
-		Iterator<Alumno> it = this.jugadores.iterator();
+	public T pertenece3 (T a) {
+		T x = null;
+		Iterator<T> it = this.jugadores.iterator();
 		
-		Alumno buscado = null;
+		T buscado = null;
 		while (it.hasNext() && x == null) {
 			buscado = it.next();
 			if (buscado != null && buscado.equals(a)) {
@@ -69,34 +69,34 @@ public class Equipo {
 	}
 	
 	public void muestraEquipo() {
-		for (Alumno x : this.jugadores) {
+		for (T x : this.jugadores) {
 			System.out.println(x);
 		}
 	}
 	
-	public Equipo union(Equipo e) {
+	public EquipoGenerico<T> union(EquipoGenerico<? extends T> e) {
 		this.jugadores.addAll(e.getJugadores());
 		return this;
 	}
 	
-	public Equipo union2(Equipo e) {
-		for (Alumno a : e.getJugadores()) {
+	public EquipoGenerico<T> union2(EquipoGenerico<? extends T> e) {
+		for (T a : e.getJugadores()) {
 			this.jugadores.add(a);
 		}
 		
 		return this;
 	}
 	
-	public Equipo interseccion(Equipo e) {
+	public EquipoGenerico<T> interseccion(EquipoGenerico<? extends T> e) {
 		this.jugadores.retainAll(e.getJugadores());
 		return this;
 	}
 	
-	public Equipo interseccion2(Equipo e) {
-		Iterator<Alumno> it = this.jugadores.iterator();
+	public EquipoGenerico<T> interseccion2(EquipoGenerico<? extends T> e) {
+		Iterator<T> it = this.jugadores.iterator();
 		
 		while (it.hasNext()) {
-			Alumno a = it.next();
+			T a = it.next();
 			if (!e.getJugadores().contains(a)) {
 				it.remove();
 			}
