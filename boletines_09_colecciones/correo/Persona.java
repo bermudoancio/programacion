@@ -1,5 +1,7 @@
 package boletines_09_colecciones.correo;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Stream;
 
 public abstract class Persona {
@@ -77,6 +79,8 @@ public abstract class Persona {
 	public void enviarCorreo(String msg, Persona personaDestinatario) throws IESException{
 		Mensaje m = new Mensaje(this, msg);
 		
+		personaDestinatario.mensajes.add(m);
+		m.enviar();
 	}
 	
 	/**
@@ -86,7 +90,22 @@ public abstract class Persona {
 	 */
 	
 	public String mostrarMensajes() throws IESException{
-		return null;
+		if (this.mensajes.size() == 0) {
+			throw new IESException("No hay mensajes");
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		
+		int indice = 1;
+		for (Mensaje m: this.mensajes) {
+			sb.append("Mensaje ").append(indice++).append(": ")
+			.append(m).append(System.lineSeparator())
+			.append("####################")
+			.append(System.lineSeparator())
+			.append(System.lineSeparator());
+		}
+		
+		return sb.toString();
 	}
 	
 	/**
@@ -95,17 +114,50 @@ public abstract class Persona {
 	 * @throws IESException 
 	 */
 	public void borrarMensaje( int numeroMensaje) throws IESException{
-	
+		
+		try {
+			this.mensajes.remove(numeroMensaje);
+		}
+		catch (IndexOutOfBoundsException e) {
+			throw new IESException("No existe ese índice");
+		}
 		
 	}
 	
 	
 	public String mostrarMensajesOrdenados()throws IESException{
-		return null;
+		if (this.mensajes.size() == 0) {
+			throw new IESException("No hay mensajes");
+		}
+		
+		this.mensajes.sort(new Comparator<Mensaje>() {
+			public int compare(Mensaje p1, Mensaje p2) {
+				return p1.getRemitente().getNombre().compareTo(p2.getRemitente().getNombre());
+			}
+		});
+		
+		return this.mostrarMensajes();
 	}	
 	
 	
 	public String buscarMensajesConTexto( String texto) throws IESException{
-		return null;
+		StringBuilder sb = new StringBuilder();
+		int indice = 1;
+		
+		for (Mensaje m: this.mensajes) {
+			if (m.getTexto().contains(texto)) {
+				sb.append("Mensaje ").append(indice++).append(": ")
+				.append(m).append(System.lineSeparator())
+				.append("####################")
+				.append(System.lineSeparator())
+				.append(System.lineSeparator());
+			}
+		}
+		
+		if (indice == 1) {
+			throw new IESException("No hay mensajes que contengan dicho texto");
+		}
+		
+		return sb.toString();
 	}
 }
