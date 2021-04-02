@@ -1,0 +1,7 @@
+Esta es la primera línea.
+Segunda línea
+Tercera
+Cuarta
+
+Antes de esta hay una línea vacía
+Esta es la última línea del fichero

@@ -1,15 +1,7 @@
-package ejemplos_de_clase;
-
-import java.io.File;
+package tema7;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,14 +9,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-/**
- * En esta clase vamos a mostrar un ejemplo completo.
- * Basándonos en el ejemplo 5, guardaremos una copia de las modificaciones
- * realizadas en un nuevo fichero, llamado concesionarioModificado.xml
- * @author José Manuel Bermudo Ancio
- *
- */
-public class EjemploXML6 {
+public class EjemploXML5 {
 
 	public static void main(String[] args) {
 
@@ -112,56 +97,12 @@ public class EjemploXML6 {
 					System.out.println("Cilindrada: " + eElement.getElementsByTagName("cilindrada").item(0).getTextContent());
 				}
 			}
-			
-			/*
-			 * Ahora vamos a guardar el resultado de haber borrado el nodo
-			 * en un fichero nuevo.
-			 */
-			
-			
-			// 1º Creamos una instancia de la clase File para acceder al archivo donde
-			// guardaremos el XML.
 
-			File f = new File("./ejemplos_de_clase/concesionarioModificado.xml");
-
-			// 2º Creamos una nueva instancia del transformador a través de la fábrica de
-			// transformadores.
-
-			Transformer transformer = TransformerFactory.newInstance().newTransformer();
-
-			// 3º Establecemos algunas opciones de salida, como por ejemplo, la codificación
-			// de salida.
-
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-
-			// 4º Creamos el StreamResult, que intermediará entre el transformador y el
-			// archivo de destino.
-
-			StreamResult result = new StreamResult(f);
-
-			// 5º Creamos el DOMSource, que intermediará entre el transformador y el árbol
-			// DOM.
-
-			DOMSource source = new DOMSource(documento);
-
-			// 6º Realizamos la transformación.
-
-			transformer.transform(source, result);
-
-		} 
-		catch (TransformerException ex) {
-
-			System.out.println("¡Error! No se ha podido llevar a cabo la transformación.");
-
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 
 			System.out.println("¡Error! No se ha podido cargar el documento XML: " + ex.getMessage());
 
 		}
-
 
 	}
 

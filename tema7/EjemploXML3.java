@@ -1,4 +1,4 @@
-package ejemplos_de_clase;
+package tema7;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
