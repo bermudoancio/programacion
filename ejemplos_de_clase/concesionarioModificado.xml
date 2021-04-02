@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<concesionario>
+      
+    <coche id="1">
+            
+        <marca>Renault</marca>
+            
+        <modelo>Megane</modelo>
+            
+        <cilindrada>1.5</cilindrada>
+          
+    </coche>
+      
+
+  
+    <coche id="3">
+            
+        <marca>Suzuki</marca>
+            
+        <modelo>Vitara</modelo>
+            
+        <cilindrada>1.9</cilindrada>
+          
+    </coche>
+    
+</concesionario>
