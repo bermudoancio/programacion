@@ -117,6 +117,9 @@ public class ListaEnlazada<E> implements List<E> {
 
 	@Override
 	public E get(int index) {
+		
+		checkValidIndex(index);
+		
 		Nodo<E> t;
 		if (index < numElementos / 2) {
 			t = primero;
@@ -132,6 +135,12 @@ public class ListaEnlazada<E> implements List<E> {
 		}
 		
 		return t.getElemento();
+	}
+	
+	public void checkValidIndex(int index) {
+		if (index < 0 || index >= this.numElementos) {
+			throw new IndexOutOfBoundsException();
+		}
 	}
 
 	@Override
@@ -202,6 +211,7 @@ public class ListaEnlazada<E> implements List<E> {
 		
 		protected ListaEnlazadaIterator() {
 			indice = 0;
+			siguiente = primero;
 		}
 		
 		@Override
@@ -216,19 +226,11 @@ public class ListaEnlazada<E> implements List<E> {
 				throw new NoSuchElementException();
 			}
 			
-			// Si nunca se hab�a llamado a next
-			if (ultimoDevuelto == null) {
-				ultimoDevuelto = primero;
-			}
-			else {
-				// En otro caso, cogemos el siguiente
-				ultimoDevuelto = ultimoDevuelto.getSiguiente();
-			}
+			ultimoDevuelto = siguiente;
+			siguiente = siguiente.getSiguiente();
 			
-			// Movemos el �ndice por el que vamos recorriendo
 			indice++;
 			
-			// Y devolvemos el elemento
 			return ultimoDevuelto.getElemento();
 		}
 		
@@ -236,7 +238,7 @@ public class ListaEnlazada<E> implements List<E> {
 		public void remove() {
 			// Si llaman a remove sin hacer un next()
 			if (ultimoDevuelto == null) {
-				throw new NoSuchElementException();
+				throw new IllegalStateException();
 			}
 			
 			Nodo<E> sig = ultimoDevuelto.getSiguiente();
@@ -259,6 +261,7 @@ public class ListaEnlazada<E> implements List<E> {
 			}
 			
 			// puntero ahora debe ser nulo
+			ultimoDevuelto.setElemento(null);
 			ultimoDevuelto = null;
 			
 			// El tama�o de la lista se ha reducido

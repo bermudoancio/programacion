@@ -31,8 +31,7 @@ public class ListaEnlazada<E> implements List<E> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.indexOf(o) != -1;
 	}
 
 	@Override

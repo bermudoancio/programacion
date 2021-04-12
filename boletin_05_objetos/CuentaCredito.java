@@ -1,4 +1,4 @@
-package banco;
+package boletin_05_objetos;
 
 public class CuentaCredito extends Cuenta{
   
@@ -14,7 +14,7 @@ public class CuentaCredito extends Cuenta{
   
   
   public CuentaCredito(String titular) throws CuentaException {
-    super(titular);
+    //super(titular);
     this.setCredito(CREDITO_POR_DEFECTO);
     this.creditoConsumido = 0;
     this.contadorIngresoNoRegistrado = 0;
@@ -23,7 +23,7 @@ public class CuentaCredito extends Cuenta{
 
   
   public CuentaCredito(double saldo, String titular) throws CuentaException {
-    super(saldo, titular);
+    //super(saldo, titular);
     this.setCredito(CREDITO_POR_DEFECTO);
     this.creditoConsumido = 0;
     this.contadorIngresoNoRegistrado = 0;
@@ -32,7 +32,7 @@ public class CuentaCredito extends Cuenta{
   
   
   public CuentaCredito(double saldo, double credito, String titular) throws CuentaException {
-    super(saldo, titular);
+    //super(saldo, titular);
     this.setCredito(credito);
     this.creditoConsumido = 0;
     this.contadorIngresoNoRegistrado = 0;
@@ -49,14 +49,14 @@ public class CuentaCredito extends Cuenta{
   
   private void setCredito(double credito) throws CuentaException {
     if(credito < 0 || credito > CREDITO_MAXIMO) {
-      throw new CuentaException("El valor " + credito + " no está aceptado para el crédito.");
+      throw new CuentaException("El valor " + credito + " no estï¿½ aceptado para el crï¿½dito.");
     }
     
     this.credito = credito;
   }
   
   
-  @Override
+  
   public void realizarReintegro(double monto) throws CuentaException {
     
     if(monto <= 0) {
@@ -72,26 +72,26 @@ public class CuentaCredito extends Cuenta{
     if(super.getSaldo() >= monto) {
       //entonces lo puede retirar el padre sin problemas
       retiro = monto;
-    }/* si el saldo del padre es menor que el saldo, entonces hay que comprobar si tiene crédito suficiente 
-      * es decir: el saldo del padre es mayor o igual que el monto a retirar menos el crédito restante
+    }/* si el saldo del padre es menor que el saldo, entonces hay que comprobar si tiene crï¿½dito suficiente 
+      * es decir: el saldo del padre es mayor o igual que el monto a retirar menos el crï¿½dito restante
       */
     else if(super.getSaldo() + (this.getCredito() - this.creditoConsumido) >= monto) { 
       //se retira una cantidad igual al saldo, para que quede a cero
       retiro = super.getSaldo();
-      //se calcula el crédito consumido con la operación
+      //se calcula el crï¿½dito consumido con la operaciï¿½n
       this.creditoConsumido += monto - super.getSaldo();
     }
     
     /*
-     * se realiza el retiro en la clase padre, pero se filtra el valor del 0 para no lanzar excepción en el padre...
+     * se realiza el retiro en la clase padre, pero se filtra el valor del 0 para no lanzar excepciï¿½n en el padre...
      */
     if(retiro != 0) {
       super.realizarReintegro(retiro);
     }
     else {
       /*
-       * Al filtrar el cero no se está llamando al método del padre, y por tanto no se está incrementando el número de 
-       * reintegros, así que hace falta llevar un conteo adicional en la clase hija (esta) de los reintegros no registrados
+       * Al filtrar el cero no se estï¿½ llamando al mï¿½todo del padre, y por tanto no se estï¿½ incrementando el nï¿½mero de 
+       * reintegros, asï¿½ que hace falta llevar un conteo adicional en la clase hija (esta) de los reintegros no registrados
        * en la clase padre.
        */
       this.contadorReintegroNoRegistrado++;
@@ -134,8 +134,8 @@ public class CuentaCredito extends Cuenta{
   //TODO: quitar saldo padre
   @Override
   public String toString() {
-    return String.format("Titular: %s.%nSaldo padre: %.2f%nSaldo: %.2f€%nCrédito total: %.2f%n"
-        + "Crédito consumido: %.2f%nReintegros realizados: %d%n", this.getTitular(), 
+    return String.format("Titular: %s.%nSaldo padre: %.2f%nSaldo: %.2fï¿½%nCrï¿½dito total: %.2f%n"
+        + "Crï¿½dito consumido: %.2f%nReintegros realizados: %d%n", this.getTitular(), 
         super.getSaldo(), this.getSaldo(), this.getCredito(), this.creditoConsumido, this.getContadorReintegros());
   }
 }
