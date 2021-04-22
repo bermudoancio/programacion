@@ -9,7 +9,7 @@ import java.nio.file.StandardOpenOption;
 
 public class EscribirAFichero {
 	public static void main(String[] args) {
-		Path ficheroSalida = Paths.get("./ejemplos_de_clase/java_nio/ficheroAEscribir.txt");
+		Path ficheroSalida = Paths.get("./src/tema7/java_nio/ficheroAEscribir.txt");
 		
 		String text = "Esto es una cadena de prueba con tíldes mal puestas y eñes.";
 		try {

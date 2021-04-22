@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <concesionario>
-  <coche id="1">
+  <coche id="1" precio="20000">
     <marca>Renault</marca>
     <modelo>Megane</modelo>
     <cilindrada>1.5</cilindrada>

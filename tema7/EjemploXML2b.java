@@ -27,7 +27,7 @@ public class EjemploXML2b {
 			// 3º Procesamos el documento (almacenado en un archivo) y lo convertimos en un
 			// árbol DOM.
 
-			Document documento = db.parse("./ejemplos_de_clase/concesionario.xml");
+			Document documento = db.parse("./src/tema7/concesionario.xml");
 
 			Element e = documento.getDocumentElement();
 			// Normaliza los elementos del documento
@@ -63,7 +63,7 @@ public class EjemploXML2b {
 			
 			/* ##### AHORA LO HAREMOS CON UN XML SIN ESPACIOS ##### */
 			System.out.println("Ahora cargamos el fichero XML sin espacios");
-			Document documentoSinEspacios = db.parse("./ejemplos_de_clase/concesionario2.xml");
+			Document documentoSinEspacios = db.parse("./src/tema7/concesionario2.xml");
 
 			Element e2 = documentoSinEspacios.getDocumentElement();
 			// Normaliza los elementos del documento

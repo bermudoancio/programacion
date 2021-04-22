@@ -10,11 +10,11 @@ import java.util.stream.Stream;
 public class LecturaLineaALinea {
 
 	public static void main(String[] args) {
-		Path path = Paths.get("./ejemplos_de_clase/java_nio/fichero.txt");
+		Path path = Paths.get("./src/tema7/java_nio/fichero.txt");
 		try (
 			Stream<String> stream = Files.lines(path)
 		) {
-			stream.forEach( s ->System.out.println(s));
+			stream.forEach( s -> System.out.println(s));
 		} 
 		catch (IOException e) {
 			System.out.println(e.getMessage());

@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class DeFicheroACadena {
 
 	public static void main(String[] args) {
-		Path path = Paths.get("./ejemplos_de_clase/java_nio/fichero.txt");
+		Path path = Paths.get("./src/tema7/java_nio/fichero.txt");
 		
 		String content = null;
 		try {

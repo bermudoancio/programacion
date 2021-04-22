@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 public class LecturaLineaALinea2 {
 
 	public static void main(String[] args) {
-		Path path = Paths.get("./ejemplos_de_clase/java_nio/fichero.txt");
+		Path path = Paths.get("./src/tema7/java_nio/fichero.txt");
 		
 		try {
 			List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);

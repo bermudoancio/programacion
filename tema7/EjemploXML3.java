@@ -28,7 +28,7 @@ public class EjemploXML3 {
 			// 3º Procesamos el documento (almacenado en un archivo) y lo convertimos en un
 			// árbol DOM.
 
-			Document documento = db.parse("./ejemplos_de_clase/concesionario.xml");
+			Document documento = db.parse("./src/tema7/concesionario.xml");
 
 			Element e = documento.getDocumentElement();
 			// Normaliza los elementos del documento
@@ -57,6 +57,8 @@ public class EjemploXML3 {
 			// Ahora, enlazamos el atributo al elemento
 			nuevoCoche.setAttributeNode(atributo);
 			
+			// En este punto tengo esto: <coche id="4"></coche>
+			
 			/*
 			 * Lo anterior es equivalente a esto:
 			 * nuevoCoche.setAttribute("id", Integer.toString(newId));
@@ -72,7 +74,7 @@ public class EjemploXML3 {
 			 * Element etiquetaMarca = documento.createElement("marca");
 			 * Text marcaTXT = documento.createTextNode("Honda");
  			 * etiquetaMarca.appendChild(marcaTXT);
-			 * documento.getDocumentElement().appendChild(etiquetaMarca);
+			 * nuevoCoche.appendChild(etiquetaMarca);
 			 */
 
 			
