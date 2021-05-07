@@ -1,4 +1,4 @@
-package Repaso;
+package boletin_10.xml;
 
 import java.io.File;
 
@@ -13,7 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
-public class Ej2xml {
+public class Ej02 {
 	public static void main(String[] args) {
 		try {
 			// 1º Creamos una nueva instancia de un fábrica de constructores de documentos.

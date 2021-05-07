@@ -1,4 +1,4 @@
-package ej1;
+package boletin_10.xml;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class ej1 {
+public class Ej01 {
 
 	
 	public static void main(String[] args) {
@@ -36,17 +36,17 @@ public class ej1 {
 		lista.add(p5);
 		
 		try {
-			// 1º Creamos una nueva instancia de un fábrica de constructores de documentos.
+			// 1ï¿½ Creamos una nueva instancia de un fï¿½brica de constructores de documentos.
 			 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			
-			 // 2º A partir de la instancia anterior, fabricamos un constructor de
-			 // documentos, que procesará el XML.
+			 // 2ï¿½ A partir de la instancia anterior, fabricamos un constructor de
+			 // documentos, que procesarï¿½ el XML.
 			 DocumentBuilder db = dbf.newDocumentBuilder();
 			 
 			 // Construimos un objeto del tipo Document
 			 Document doc = db.newDocument();
 			 
-			 // Al document se le añade el nodo principal o raíz
+			 // Al document se le aï¿½ade el nodo principal o raï¿½z
 			 Element rootElement = doc.createElement("personas");
 		     doc.appendChild(rootElement);
 		     
@@ -56,10 +56,10 @@ public class ej1 {
 		    	 // Creamos el nodo que representa a la persona
 		    	 Element persona = doc.createElement("persona");
 		    	 
-		    	 // Añadimos al nodo padre
+		    	 // Aï¿½adimos al nodo padre
 		    	 rootElement.appendChild(persona);
 		    	 
-		    	 // Creamos los siguientes elementos hijos del nodo persona y se le da valor en la siguiente línea
+		    	 // Creamos los siguientes elementos hijos del nodo persona y se le da valor en la siguiente lï¿½nea
 		    	 Element nombre = doc.createElement("nombre");
 		    	 nombre.setTextContent(p.getNombre());
 		    	 
@@ -72,45 +72,45 @@ public class ej1 {
 		    	 Element fechaNac = doc.createElement("fechaNacimiento");
 		    	 fechaNac.setTextContent(p.getFechaNacimiento().toString());
 		    	 
-		    	 // Añadimos todos los elementos a persona
+		    	 // Aï¿½adimos todos los elementos a persona
 		    	 persona.appendChild(nombre);
 		    	 persona.appendChild(dni);
 		    	 persona.appendChild(telefono);
 		    	 persona.appendChild(fechaNac);
 		     }	
-		     	// 1º Creamos una instancia de la clase File para acceder al archivo donde
+		     	// 1ï¿½ Creamos una instancia de la clase File para acceder al archivo donde
 				// guardaremos el XML.
 
 				File f = new File("D:\\Personal\\Instituto\\Asignaturas\\Programacion\\Tema 7\\personas.xml");
 
-				// 2º Creamos una nueva instancia del transformador a través de la fábrica de
+				// 2ï¿½ Creamos una nueva instancia del transformador a travï¿½s de la fï¿½brica de
 				// transformadores.
 
 				Transformer transformer = TransformerFactory.newInstance().newTransformer();
 
-				// 3º Establecemos algunas opciones de salida, como por ejemplo, la codificación
+				// 3ï¿½ Establecemos algunas opciones de salida, como por ejemplo, la codificaciï¿½n
 				// de salida.
 
 				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
 				transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 
-				// 4º Creamos el StreamResult, que intermediará entre el transformador y el
+				// 4ï¿½ Creamos el StreamResult, que intermediarï¿½ entre el transformador y el
 				// archivo de destino.
 
 				StreamResult result = new StreamResult(f);
 
-				// 5º Creamos el DOMSource, que intermediará entre el transformador y el árbol
+				// 5ï¿½ Creamos el DOMSource, que intermediarï¿½ entre el transformador y el ï¿½rbol
 				// DOM.
 
 				DOMSource source = new DOMSource(doc);
 
-				// 6º Realizamos la transformación.
+				// 6ï¿½ Realizamos la transformaciï¿½n.
 
 				transformer.transform(source, result);
 		} 
 		catch (Exception ex) {
-			System.out.println("¡Error! No se ha podido cargar el documento XML." + ex.getMessage());
+			System.out.println("ï¿½Error! No se ha podido cargar el documento XML." + ex.getMessage());
 		}
 
 		

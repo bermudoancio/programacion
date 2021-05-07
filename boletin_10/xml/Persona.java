@@ -1,4 +1,4 @@
-package ej1;
+package boletin_10.xml;
 import java.time.LocalDate;
 
 public class Persona {

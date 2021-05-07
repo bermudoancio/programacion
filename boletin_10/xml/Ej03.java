@@ -1,4 +1,4 @@
-package ejercicio3;
+package boletin_10.xml;
 
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
@@ -17,7 +17,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class Ej3 {
+public class Ej03 {
 
 	public static void main(String[] args) {
 
