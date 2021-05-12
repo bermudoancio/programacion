@@ -1,10 +1,9 @@
-package ej07;
+package boletin_10;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
-import InputCollector.UserDataCollector;
 
 
 public class Ej07 {
