@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public class AgendaCompuesta {
 	public static void main(String[] args) {
 		
-		File archivo = new File ("./tema7/expresiones_regulares/agendaCompuesta.txt");
+		File archivo = new File ("./src/tema7/expresiones_regulares/agendaCompuesta.txt");
 		
 		// Este es el patrón a buscar
 		//Pattern p = Pattern.compile("^\\d+:\\w*:\\d{9}$");
@@ -27,7 +27,9 @@ public class AgendaCompuesta {
 		 * hace falta para agrupar elementos que se repiten).
 		 * 
 		 */
-		Pattern p = Pattern.compile("^(\\d+):((?:[a-zA-ZÀ-ÿ\u00f1\u00d1]+\\s*)*(?:[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+)):(\\d{9})$");
+		
+		//Pattern p = Pattern.compile("^(\\d+):((?:[a-zA-ZÀ-ÿ\u00f1\u00d1]+\\s*)*(?:[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+)):(\\d{9})$");
+		Pattern p = Pattern.compile("^(\\d+):((?:\\p{L}+\\s+)*(?:\\p{L}+)):(\\d{9})$");
 
 		try (FileReader fr = new FileReader (archivo); 
 				BufferedReader br = new BufferedReader(fr)) { 
