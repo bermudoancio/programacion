@@ -22,23 +22,29 @@ public class Quijote {
 	
 	private static void menosDeXPalabras(int i) {
 		try (BufferedReader reader = new BufferedReader(new FileReader("./src/boletin_10/xml/quijote.txt"))) {
+							
+			String linea;
+			
 			Pattern p = Pattern.compile("\\p{L}+");
 			
-			String linea;			
-			while ((linea = reader.readLine()) != null) {
-				Matcher m = p.matcher(linea);
+			while((linea = reader.readLine())!=null) {
+//					Matcher m = p.matcher(linea);
+//					if(m.find()) {
+//						if(m.results().count() < 18) {
+//							System.out.println(linea);
+//						}
+//					}
 				
-				if (m.find()  ) {
-					System.out.println(m.group());
+				if(linea.split("\\p{L}+").length < 19) {
+					System.out.println(linea);
 				}
 			}
-
-		} 
-		catch (FileNotFoundException e) {
+			
+			
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		catch (IOException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
