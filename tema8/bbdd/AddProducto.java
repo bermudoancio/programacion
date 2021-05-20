@@ -39,9 +39,9 @@ public class AddProducto {
 	private static int mostrarMenu() {
 		int op = 0;
 		do {
-			System.out.println("Menú vehículos:");
+			System.out.println("Menú productos:");
 			System.out.println("1.-Nuevo Producto");
-			System.out.println(OPCION_SALIR + ".-Nuevo Producto");
+			System.out.println(OPCION_SALIR + ".-Salir");
 			try {
 				op = Integer.parseInt(teclado.nextLine());
 			} catch (NumberFormatException e) {
