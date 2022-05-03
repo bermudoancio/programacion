@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 public class ListaEnlazada<E> implements List<E> {
 
@@ -36,8 +37,7 @@ public class ListaEnlazada<E> implements List<E> {
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ListaEnlazadaIterator();
 	}
 
 	@Override
@@ -113,13 +113,17 @@ public class ListaEnlazada<E> implements List<E> {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private void checkIndex(int index) {
+		if (index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException();
+		}
+	}
 
 	@Override
 	public E get(int index) {
 		
-		if (index < 0 || index >= size) {
-			throw new IndexOutOfBoundsException();
-		}
+		checkIndex(index);
 		
 		Nodo<E> n = primero;
 		for (int i = 0; i < index; i++) {
@@ -137,8 +141,25 @@ public class ListaEnlazada<E> implements List<E> {
 
 	@Override
 	public void add(int index, E element) {
-		// TODO Auto-generated method stub
 		
+		checkIndex(index);
+		
+		Nodo<E> nodo = new Nodo<>(element);
+		
+		Nodo<E> n = primero;
+		
+		if (index == 0) {
+			nodo.setSiguiente(n);
+			primero = nodo;
+		}
+		else {
+			for (int i = 1; i < index; i++) {
+				n = n.getSiguiente();
+			}
+			nodo.setSiguiente(n.getSiguiente());
+			
+			n.setSiguiente(nodo);
+		}
 	}
 
 	@Override
@@ -186,6 +207,73 @@ public class ListaEnlazada<E> implements List<E> {
 	public List<E> subList(int fromIndex, int toIndex) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	class ListaEnlazadaIterator implements Iterator<E> {
+
+		int contador;
+		
+		Nodo<E> siguiente;
+		Nodo<E> ultimoDevuelto;
+		Nodo<E> anteriorAlUltimoDevuelto;
+		
+		public ListaEnlazadaIterator() {
+			contador = 0;
+			siguiente = primero;
+		}
+		
+		@Override
+		public boolean hasNext() {
+			return contador < size;
+		}
+
+		@Override
+		public E next() {
+			
+			if (contador >= size) {
+				throw new NoSuchElementException();
+			}
+			
+			anteriorAlUltimoDevuelto = ultimoDevuelto;
+			
+			ultimoDevuelto = siguiente;
+			
+			siguiente = siguiente.getSiguiente();
+			
+			contador++;
+			
+			return ultimoDevuelto.getElemento();
+		}
+		
+		@Override
+		public void remove() {
+			if (ultimoDevuelto == null) {
+				throw new IllegalStateException();
+			}
+			
+			// if (contador == 1)
+			if (anteriorAlUltimoDevuelto == null) {
+				// Es el primer elemento
+				primero = ultimoDevuelto.getSiguiente();
+			}
+			else {
+				anteriorAlUltimoDevuelto.setSiguiente(siguiente);
+			}
+			
+			if (siguiente == null) {
+				ultimo = anteriorAlUltimoDevuelto;
+			}
+			
+			// Actualizo el tamaño
+			--size;
+			
+			// Actualizo el índice por el que voy
+			--contador;
+			
+			ultimoDevuelto = null;
+			
+		}
+		
 	}
 
 }
