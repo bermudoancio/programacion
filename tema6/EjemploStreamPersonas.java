@@ -18,12 +18,19 @@ public class EjemploStreamPersonas {
 //
 //			@Override
 //			public int compare(Persona o1, Persona o2) {
-//				return o1.getEdad() - o2.getEdad();
+//				if (o1.getEdad() == o2.getEdad()) {
+//					return o1.getNombre().compareTo(o2.getNombre());			
+//				}
+//				else {
+//					return o1.getEdad() - o2.getEdad();
+//				}
 //			}
 //			
 //		})
 		
-		flujo.sorted((o1, o2) -> o1.getAltura() - o2.getAltura())
+		//flujo.sorted((o1, o2) -> o1.getAltura() - o2.getAltura())
+		
+		flujo.map(o1 -> Integer.valueOf(o1.getAltura()))
 		.forEach(System.out::println);
 
 	}
