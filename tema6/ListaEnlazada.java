@@ -211,26 +211,26 @@ public class ListaEnlazada<E> implements List<E> {
 	
 	class ListaEnlazadaIterator implements Iterator<E> {
 
-		int contador;
+		int contad;
 		
 		Nodo<E> siguiente;
 		Nodo<E> ultimoDevuelto;
 		Nodo<E> anteriorAlUltimoDevuelto;
 		
 		public ListaEnlazadaIterator() {
-			contador = 0;
+			contad = 0;
 			siguiente = primero;
 		}
 		
 		@Override
 		public boolean hasNext() {
-			return contador < size;
+			return contad < size;
 		}
 
 		@Override
 		public E next() {
 			
-			if (contador >= size) {
+			if (contad >= size) {
 				throw new NoSuchElementException();
 			}
 			
@@ -240,7 +240,7 @@ public class ListaEnlazada<E> implements List<E> {
 			
 			siguiente = siguiente.getSiguiente();
 			
-			contador++;
+			contad++;
 			
 			return ultimoDevuelto.getElemento();
 		}
@@ -268,7 +268,7 @@ public class ListaEnlazada<E> implements List<E> {
 			--size;
 			
 			// Actualizo el índice por el que voy
-			--contador;
+			--contad;
 			
 			ultimoDevuelto = null;
 			
