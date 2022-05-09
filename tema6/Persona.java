@@ -4,6 +4,8 @@ public class Persona implements Comparable<Persona> {
 	private String nombre;
 	private int edad;
 	private int altura;
+	private Coche coche;
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -33,6 +35,10 @@ public class Persona implements Comparable<Persona> {
 		this.nombre = nombre;
 		this.edad = edad;
 		this.altura = altura;
+		
+		this.coche = new Coche("Coche " + Math.random() * 1010, 
+				(int) (Math.random() * 150));
+		
 	}
 	
 	@Override
