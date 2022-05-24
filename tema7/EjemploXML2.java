@@ -35,12 +35,13 @@ public class EjemploXML2 {
 			
 			// Obtenemos la lista de todos los nodos que se llamen "coche"
 			NodeList nList = documento.getElementsByTagName("coche");
+			//NodeList nList = e.getChildNodes();
 			System.out.println("Número de coches: " + nList.getLength());
 
-		
+			
 			for (int i = 0; i < nList.getLength(); i++) {
 				Node nNode = nList.item(i);
-
+				
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
 
@@ -50,6 +51,8 @@ public class EjemploXML2 {
 					System.out.println("Cilindrada: " + eElement.getElementsByTagName("cilindrada").item(0).getTextContent());
 				}
 			}
+			
+			
 
 		} catch (Exception ex) {
 

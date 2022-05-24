@@ -6,7 +6,7 @@ public class RandomAccessFileDemo {
 	public static void main(String[] args) {
 		try {
 			// create a new RandomAccessFile with filename test
-			RandomAccessFile raf = new RandomAccessFile("C:\\Users\\profesor\\Desktop\\hola.txt", "rw");
+			RandomAccessFile raf = new RandomAccessFile("./src/tema7/hola.txt", "rw");
 			// write something in the file
 			raf.writeUTF("Hello World");
 			// set the file pointer at 0 position

@@ -11,7 +11,7 @@ public class PrincipalDiccionario {
 	public static void main(String[] args) {
 		sc = new Scanner(System.in);
 		
-		Diccionario diccionario = new Diccionario();
+		Diccionario22 Diccionario22 = new Diccionario22();
 		
 		int opcion = 0;
 		
@@ -23,16 +23,16 @@ public class PrincipalDiccionario {
 				
 				switch (opcion) {
 				case 1:
-					opcion1(diccionario);
+					opcion1(Diccionario22);
 					break;
 				case 2:
-					opcion2(diccionario);
+					opcion2(Diccionario22);
 					break;
 				case 3:
-					opcion3(diccionario);
+					opcion3(Diccionario22);
 					break;
 				case 4:
-					opcion4(diccionario);
+					opcion4(Diccionario22);
 					break;
 				case OPCION_SALIR:
 					System.out.println("Adiós");
@@ -61,7 +61,7 @@ public class PrincipalDiccionario {
 		return sb.toString();
 	}
 	
-	public static void opcion1(Diccionario diccionario) {
+	public static void opcion1(Diccionario22 Diccionario22) {
 		
 		boolean correcto = false;
 		String palabra = null, significado = null;
@@ -85,10 +85,10 @@ public class PrincipalDiccionario {
 			}
 		}
 		
-		diccionario.addPalabra(palabra, significado);
+		Diccionario22.addPalabra(palabra, significado);
 	}
 	
-	public static void opcion2(Diccionario diccionario) {
+	public static void opcion2(Diccionario22 Diccionario22) {
 		boolean correcto = false;
 		String palabra = null;
 		
@@ -103,7 +103,7 @@ public class PrincipalDiccionario {
 			}
 		}
 		
-		List<String> significados = diccionario.buscarPalabra(palabra);
+		List<String> significados = Diccionario22.buscarPalabra(palabra);
 		
 		if (significados == null) {
 			System.out.println("No encuentro la palabra. Comprueba las mayúsculas y minúsculas");
@@ -115,7 +115,7 @@ public class PrincipalDiccionario {
 		}
 	}
 	
-	public static void opcion3(Diccionario diccionario) {
+	public static void opcion3(Diccionario22 Diccionario22) {
 		boolean correcto = false;
 		String palabra = null;
 		
@@ -127,14 +127,14 @@ public class PrincipalDiccionario {
 			}
 		}
 		
-		diccionario.borrarPalabra(palabra);
+		Diccionario22.borrarPalabra(palabra);
 	}
 	
-	public static void opcion4(Diccionario diccionario) {
+	public static void opcion4(Diccionario22 Diccionario22) {
 		System.out.print("Introduce el comienzo de la palabra: ");
 		String comienzaPor = sc.nextLine().trim();
 		
-		List<String> claves = diccionario.listadoPalabras(comienzaPor);
+		List<String> claves = Diccionario22.listadoPalabras(comienzaPor);
 		for (String clave: claves) {
 			System.out.println(clave);
 		}

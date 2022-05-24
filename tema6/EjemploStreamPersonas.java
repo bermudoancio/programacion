@@ -2,6 +2,8 @@ package tema6;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class EjemploStreamPersonas {
@@ -18,6 +20,24 @@ public class EjemploStreamPersonas {
 		
 		Stream<Persona> flujo = lista.stream();
 		
+//		flujo.map(a -> a.getCoche())
+//		.filter(a -> a.getCaballos() > 50)
+//		.map(a -> a.getMarca()) // podríamos hacerlo con toString en coche
+//		.forEach(System.out::println);
+		
+//		System.out.println(
+//			flujo.map(a -> a.getCoche())
+//			.filter(a -> a.getCaballos() < 50)
+//			.mapToInt(a -> a.getCaballos())
+//			.sum()
+//		);
+		
+		List<Coche> listaCoches = 
+				flujo.map(a -> a.getCoche())
+				.filter(a -> a.getCaballos() < 50)
+				.collect(Collectors.toList());
+		
+		
 //		System.out.println(flujo.allMatch(p -> p.getEdad() > 35) ?
 //				"Sí": "No");
 		
@@ -33,9 +53,9 @@ public class EjemploStreamPersonas {
 //				"Sí": "No");
 		
 		// NoneMatch
-		System.out.println(flujo.
-				filter(p -> p.getEdad() > 1).count() == 0 ?
-				"Sí": "No");
+//		System.out.println(flujo.
+//				filter(p -> p.getEdad() > 1).count() == 0 ?
+//				"Sí": "No");
 		
 		
 		//flujo.sorted(new ComparadorEdad())

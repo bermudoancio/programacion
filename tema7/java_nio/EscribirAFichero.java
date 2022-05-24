@@ -14,14 +14,15 @@ public class EscribirAFichero {
 		String text = "Esto es una cadena de prueba con tíldes mal puestas y eñes.";
 		try {
 			// Escribe al fichero. Si no existe se creará. Si tiene contenido, se truncará.
-			Files.write(ficheroSalida, text.getBytes(StandardCharsets.UTF_8),
-			        StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+//			Files.write(ficheroSalida, text.getBytes(StandardCharsets.UTF_8),
+//			        StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 			
 			/*
 			 * La línea anterior truncará el fichero si existe. Para añadir el texto al archivo:
-			 * Files.write(ficheroSalida, text.getBytes(StandardCharsets.UTF_8),
-			        StandardOpenOption.CREATE, StandardOpenOption.APPEND);
 			 */
+			 Files.write(ficheroSalida, text.getBytes(StandardCharsets.UTF_8),
+			        StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+			 
 			
 		} 
 		catch (IOException e) {

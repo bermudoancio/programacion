@@ -8,6 +8,8 @@ public class Ej05 {
 	public static void main(String[] args) {
 				
 		int opcion = 0;
+		
+		opcion = Ej05.menu();
 
 		while (opcion != 5) {
 			try {
@@ -32,7 +34,7 @@ public class Ej05 {
 				System.out.println(e.getMessage());
 			}
 
-			opcion = Ej05.menu();
+			
 		}
 
 	}

@@ -60,14 +60,32 @@ public class EjemploRandomAccess {
 			 * A partir del byte 54 comienza la información propia de la imagen.
 			 */
 			long size = data.length();
-			for (int x = 54; x < size; x++) {
+			
+			//System.out.println(size - 54);
+			/*
+			for (int x = 54; x < size; x = x + 3) {
 				data.seek(x);
 				byte b = data.readByte();
 				b = (byte) (b ^ 255);
+				
+				byte b = data.readByte();
+				byte g = data.readByte();
+				byte r = data.readByte();
+				out.write((byte) 0);
+				out.write(g);
+				out.write((byte) 0);
+			}
+			*/
+			for (long x = size-1; x >= 54; x--) {
+				data.seek(x);
+				byte b = data.readByte();
+								
 				out.write(b);
 			}
+			
 			data.close();
 		} catch (IOException ex) {
+			System.err.println(ex.getMessage());
 		}
 	}
 }

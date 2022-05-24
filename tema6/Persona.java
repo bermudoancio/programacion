@@ -41,6 +41,9 @@ public class Persona implements Comparable<Persona> {
 		
 	}
 	
+	public Coche getCoche() {
+		return coche;
+	}
 	@Override
 	public String toString() {
 		return nombre + " " + edad + " " + altura;

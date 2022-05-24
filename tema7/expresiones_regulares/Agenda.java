@@ -22,14 +22,22 @@ public class Agenda {
 		 * Y habría que usar este otro patrón
 		 * [a-zA-ZÀ-ÿ\u00f1\u00d1]
 		 */
-		Pattern p = Pattern.compile("^(\\d+):([a-zA-ZÀ-ÿ\u00f1\u00d1]+):(\\d{9})$");
+		//Pattern p = Pattern.compile("^(\\d+):([a-zA-ZÀ-ÿ\u00f1\u00d1]+):(\\d{9})$");
+		Pattern p = Pattern.compile("^(\\d+):([A-Z][a-z]+):([6-9]\\d{8})$");
 
 		try (FileReader fr = new FileReader (archivo); 
 				BufferedReader br = new BufferedReader(fr)) { 
 		    String l;
 		    while ((l = br.readLine()) != null) {
 		    	Matcher m = p.matcher(l);
-		    	
+		    	/*
+		    	if (m.matches()) {
+		    		System.out.println("Sí, hace match");
+		    	}
+		    	else {
+		    		System.out.println("No, no hace match");
+		    	}
+		    	*/
 		    	/*
 		    	 * La función group del objeto Matcher devuelve el match (el contenido del paréntesis)
 		    	 * en orden encontrado. Pero, al contrario que en los arrays, el primer elemento encontrado
