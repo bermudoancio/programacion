@@ -1,4 +1,4 @@
-package granAlmacen;
+package boletin_09_granAlmacen;
 
 public class GranAlmacen {
 

@@ -1,4 +1,4 @@
-package granAlmacen;
+package boletin_09_granAlmacen;
 
 @SuppressWarnings("serial")
 public class GranAlmacenException extends Exception {
