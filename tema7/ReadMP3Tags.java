@@ -71,7 +71,8 @@ public class ReadMP3Tags {
     }
  
     public static void main(String[] args) {
-        String filePath = ".\\src\\tema7\\0103. Fun Time - AShamaluevMusic.mp3";
+
+        String filePath = "./src/tema7/0103. Fun Time - AShamaluevMusic.mp3";
         testReadMP3(filePath);
     }
 }

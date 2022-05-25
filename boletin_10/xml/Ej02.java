@@ -24,7 +24,7 @@ public class Ej02 {
 			// 3º Procesamos el documento (almacenado en un archivo) y lo convertimos en un
 			// árbol DOM.
 
-			File archivo = new File("C:\\Users\\andre\\eclipse-workspace\\Ficheros\\src\\Repaso\\web1.html");
+			File archivo = new File("src/boletin_10/xml/web1.html");
 
 			Document doc = db.parse(archivo);
 //			// No del todo bien:Sacamos la lista de los nodos que tengan como nombre de etiqueta "title"

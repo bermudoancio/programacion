@@ -8,10 +8,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ExpresionRegular {
+public class ExpresionRegularCharset {
 	
 	private static final File fichero = new File ("./src/boletin_10/xml/quijote.txt");
 	
@@ -19,10 +22,10 @@ public class ExpresionRegular {
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		
-//		System.out.println("El número total de palabras encontradas es de: " + contarPalabra());
+		System.out.println("El número total de palabras encontradas es de: " + contarPalabra());
 //		System.out.println("El número total de tildes y eñes encontradas es de: " + contarTildes());
 //		eliminarNumeros();
-		pasarAMayusculas();
+//		pasarAMayusculas();
 //		imprimirPalabras();
 //		buscarFrases();
 	}
@@ -31,10 +34,10 @@ public class ExpresionRegular {
 	private static int contarPalabra() throws FileNotFoundException, IOException {
 		
 		int contador = 0;
-		try(BufferedReader lector = new BufferedReader(new FileReader(fichero))){
+		try(BufferedReader lector = new BufferedReader(new FileReader(fichero, StandardCharsets.UTF_8))){
 			
 			String linea;
-			Pattern patron = Pattern.compile("([Rr]az[óo]n)");
+			Pattern patron = Pattern.compile("([Rr]az[�o]n)");
 			
 			while ((linea = lector.readLine()) != null) {
 				Matcher m = patron.matcher(linea);
@@ -81,7 +84,7 @@ public class ExpresionRegular {
 	}
 	
 	public static void eliminarNumeros() throws FileNotFoundException, IOException{
-		File nuevoFichero = new File("./src/boletin_10/xml/quijote2.txt");
+		File nuevoFichero = new File("./src/ej01/quijote2.txt");
 		if (!nuevoFichero.exists()) {
 			nuevoFichero.createNewFile();
 		}
@@ -92,8 +95,7 @@ public class ExpresionRegular {
 			
 			while((linea = lector.readLine())!=null) {
 				//Se divide la cadena a buscar en dos con los parentsis y se pone el $1 para que deje solo la primera parte de la cadena
-				//pw.println(linea.replaceAll("([a-zA-ZÀ-ÿ\u00f1\u00d1]+)([0-9]+)", "$1"));
-				pw.println(linea.replaceAll("(\\p{L}+)([0-9]+)", "$1"));
+				pw.println(linea.replaceAll("([a-zA-ZÀ-ÿ\u00f1\u00d1]+)([0-9]+)", "$1"));
 				
 			}
 			
@@ -108,7 +110,7 @@ public class ExpresionRegular {
 	
 	public static void imprimirPalabras() {
 		
-		try(BufferedReader lector = new BufferedReader(new FileReader(fichero))){
+		try(BufferedReader lector = new BufferedReader(new FileReader(fichero, StandardCharsets.UTF_8))){
 			
 			String linea;
 			
@@ -168,7 +170,7 @@ public class ExpresionRegular {
 	public static void pasarAMayusculas() throws FileNotFoundException, IOException{
 		Pattern p = Pattern.compile("\\p{L}+");
 		
-		try (BufferedReader reader = new BufferedReader(new FileReader("./src/boletin_10/xml/quijote.txt"));
+		try (BufferedReader reader = new BufferedReader(new FileReader("./src/ej01/quijote2.txt"));
 				PrintWriter out = 
 						new PrintWriter(
 								new BufferedWriter(

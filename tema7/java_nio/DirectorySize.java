@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 public class DirectorySize {
 
 	public static void main(String[] args) {
-		Path directorio = Paths.get("C:\\Users\\profesor\\mi-workspace\\boletines\\src\\tema7\\java_nio");
+		Path directorio = Paths.get("./src/tema7/java_nio");
 		if (Files.exists(directorio) && Files.isDirectory(directorio)) {
 		    try {
 		    	long size = Files.walk(directorio)
