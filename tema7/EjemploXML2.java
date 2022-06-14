@@ -7,6 +7,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 
 public class EjemploXML2 {
 
@@ -69,7 +70,16 @@ public class EjemploXML2 {
 
 					System.out.println("\nCoche id: " + eElement.getAttribute("id"));
 					System.out.println("Marca: " + eElement.getElementsByTagName("marca").item(0).getTextContent());
-					System.out.println("Modelo: " + eElement.getElementsByTagName("modelo").item(0).getTextContent());
+					
+					/*
+					 * El modelo lo vamos a obtener convirtiendo el nodo en un 
+					 * nodo de tipo texto
+					 */
+					Node nModelo = eElement.getElementsByTagName("modelo").item(0);
+					Text modelo = (Text) nModelo.getFirstChild();
+					
+					System.out.println("Modelo: " + modelo.getData());
+					//System.out.println("Modelo: " + .getTextContent());
 					System.out.println("Cilindrada: " + eElement.getElementsByTagName("cilindrada").item(0).getTextContent());
 				}
 			}
