@@ -52,6 +52,28 @@ public class EjemploXML2 {
 				}
 			}
 			
+			System.out.println("****************************");
+			
+			// Obtenemos la lista de todos los nodos que se llamen "coche"
+			NodeList sede1 = documento.getElementsByTagName("sede1");
+			nList = ((Element)sede1.item(0)).getElementsByTagName("coche");
+			//NodeList nList = e.getChildNodes();
+			System.out.println("Número de coches: " + nList.getLength());
+
+			
+			for (int i = 0; i < nList.getLength(); i++) {
+				Node nNode = nList.item(i);
+				
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) nNode;
+
+					System.out.println("\nCoche id: " + eElement.getAttribute("id"));
+					System.out.println("Marca: " + eElement.getElementsByTagName("marca").item(0).getTextContent());
+					System.out.println("Modelo: " + eElement.getElementsByTagName("modelo").item(0).getTextContent());
+					System.out.println("Cilindrada: " + eElement.getElementsByTagName("cilindrada").item(0).getTextContent());
+				}
+			}
+			
 			
 
 		} catch (Exception ex) {
