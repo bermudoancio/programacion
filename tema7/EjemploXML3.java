@@ -57,6 +57,9 @@ public class EjemploXML3 {
 			// Ahora, enlazamos el atributo al elemento
 			nuevoCoche.setAttributeNode(atributo);
 			
+			// Equivalente a lo anterior
+			//nuevoCoche.setAttribute("id", newId + "");
+			
 			// En este punto tengo esto: <coche id="4"></coche>
 			
 			/*
