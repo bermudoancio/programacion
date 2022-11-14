@@ -18,6 +18,13 @@ public class Ej4 {
 				System.out.printf("%3d ", matriz[i][j]);
 			}
 		}
+		System.out.println();
+		
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[i].length; j++) {
+				System.out.printf("%3d ", matriz[matriz.length - 1 - i][matriz[0].length - 1 - j]);
+			}
+		}
 	}
 
 }

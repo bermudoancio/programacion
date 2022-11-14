@@ -10,7 +10,7 @@ public class Ej15 {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.print("Introduce el número máximo para saber los primos: ");
+		System.out.print("Introduce el nï¿½mero mï¿½ximo para saber los primos: ");
 		ultimoNumero = Integer.parseInt(sc.nextLine());
 		
 		sc.close();
@@ -19,7 +19,7 @@ public class Ej15 {
 		
 		for (int i = 2; i <= ultimoNumero/2; i++) {
 			if (eratostenes[i] != true) {
-				for (int j = 2; j <= (ultimoNumero/i); j++) {
+				for (int j = i; j <= (ultimoNumero/i); j++) {
 					eratostenes[i * j] = true;
 				}
 			}
