@@ -15,7 +15,7 @@ public class PrincipalMaquina {
 			
 			do {
 				System.out.println(m1.mostrarMenu());
-				System.out.print("Seleccione una opción: ");
+				System.out.print("Seleccione una opciï¿½n: ");
 				opcion = Integer.parseInt(sc.nextLine());
 				
 				// Guardamos el dinero introducido por el cliente
@@ -35,7 +35,7 @@ public class PrincipalMaquina {
 				case Maquina.OPCION_APAGAR:
 					break;
 				default:
-					System.out.println("Opción no válida");
+					System.out.println("Opciï¿½n no vï¿½lida");
 				}
 			
 			} while (opcion != Maquina.OPCION_APAGAR);
@@ -53,7 +53,7 @@ public class PrincipalMaquina {
 		
 		while (dineroIntroducido < getPrecioOpcion(opcion)) {
 			if (dineroIntroducido > 0) {
-				System.out.printf("Ha introducido %f €\n", dineroIntroducido);
+				System.out.printf("Ha introducido %f ï¿½\n", dineroIntroducido);
 			}
 			dineroIntroducido += pedirDinero(opcion);
 		}
@@ -64,20 +64,20 @@ public class PrincipalMaquina {
 	public static double pedirDinero(int opcion) {
 		switch (opcion) {
 		case Maquina.OPCION_CAFE:
-			System.out.print("Introduce " + Maquina.PRECIO_CAFE + "€");
+			System.out.print("Introduce " + Maquina.PRECIO_CAFE + "ï¿½");
 			break;
 		case Maquina.OPCION_LECHE:
-			System.out.print("Introduce " + Maquina.PRECIO_LECHE + "€");
+			System.out.print("Introduce " + Maquina.PRECIO_LECHE + "ï¿½");
 			break;
 		case Maquina.OPCION_CAFE_LECHE:
-			System.out.print("Introduce " + Maquina.PRECIO_CAFE_LECHE + "€");
+			System.out.print("Introduce " + Maquina.PRECIO_CAFE_LECHE + "ï¿½");
 			break;
 		}
 				
 		return Double.parseDouble(sc.nextLine());
 	}
 	
-	public static double getPrecioOpcion (int opcion) {
+	public static double getPrecioOpcion  (int opcion) {
 		double precioProducto = 0;
 		
 		switch (opcion) {
@@ -97,8 +97,8 @@ public class PrincipalMaquina {
 	
 	/**
 	 * 
-	 * @param m el objeto que representa la máquina
-	 * @param opcion la opción seleccionada
+	 * @param m el objeto que representa la mï¿½quina
+	 * @param opcion la opciï¿½n seleccionada
 	 * @return el cambio a devolver
 	 */
 	public static double procesaOpcion(Maquina m, int opcion) {
