@@ -1,4 +1,4 @@
-package banco;
+package boletin_05_objetos;
 
 public class Test {
 

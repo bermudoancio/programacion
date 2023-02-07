@@ -13,7 +13,7 @@ public class EjemploEscritura1 {
 		File ficheroSalida = new File(".\\src\\tema7\\salidaconsola.txt");
 		
 		try (
-			PrintWriter salida = new PrintWriter(new FileWriter(ficheroSalida., true));
+			PrintWriter salida = new PrintWriter(new FileWriter(ficheroSalida, true));
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in))
 		) {
 			String l;

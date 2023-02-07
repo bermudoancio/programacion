@@ -12,7 +12,7 @@ public class Prueba {
 	}
 	
 	private static int[] eliminaDuplicados(int[] numeros) {
-		
+		return null;
 	}
 
 }

@@ -9,7 +9,7 @@ public class Ej4 {
 		
 		int indicePalabraOculta = 0;
 		
-		for (int i = 0; i < frase.length(); i++) {
+		for (int i = 0; i < frase.length() && !encontrado; i++) {
 			if (frase.charAt(i) == palabraOculta.charAt(indicePalabraOculta)) {
 				indicePalabraOculta++;
 				if (palabraOculta.length() == indicePalabraOculta) {

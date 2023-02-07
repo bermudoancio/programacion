@@ -40,18 +40,23 @@ public class Estrella {
 		return planetas;
 	}
 	
-	public Planetoide[] getPlanetasHabitables() {
+	public Planetoide[] getPlanetasHabitables() throws Exception {
 		Planetoide[] planetoidesHabitables = new Planetoide[Estrella.NUMERO_PLANETAS_MAX * Planeta.MAX_LUNAS];
 		
 		for (Planeta p: planetas) {
 			if (p != null) {
 				if (this.esHabitable(p, p.getDistanciaMediaAlSol())) {
-					Estrella.addPlanetoideAArray()
+					Estrella.addPlanetoideAArray();
 				}
 			}
 		}
 		
 		return planetoidesHabitables;
+	}
+
+	private static void addPlanetoideAArray() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**
