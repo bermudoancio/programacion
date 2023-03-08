@@ -9,16 +9,16 @@ import java.util.NoSuchElementException;
 public class ListaEnlazada<E> implements List<E> {
 
 	private int numElementos;
-	
+
 	// Apuntador al primer y al último nodo
 	private Nodo<E> primero;
 	private Nodo<E> ultimo;
-	
+
 	public ListaEnlazada() {
 		// Inicializar el número de elementos a 0
 		numElementos = 0;
 	}
-	
+
 	@Override
 	public int size() {
 		return numElementos;
@@ -53,28 +53,56 @@ public class ListaEnlazada<E> implements List<E> {
 
 	@Override
 	public boolean add(E e) {
-		
+
 		Nodo<E> nuevo = new Nodo<>(e);
-		
+
 		if (this.isEmpty()) {
 			primero = nuevo;
 			ultimo = nuevo;
-		}
-		else {
+		} else {
 			ultimo.setSiguiente(nuevo);
 			nuevo.setAnterior(ultimo);
 			ultimo = nuevo;
 		}
-		
+
 		numElementos++;
-		
+
 		return false;
 	}
 
 	@Override
 	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		int posicionElemento = this.indexOf(o);
+		if (posicionElemento != -1) {
+			Nodo<E> nodoActual = primero;
+
+			for (int i = 0; i <= posicionElemento; i++) {
+				if (i == posicionElemento) {
+
+					if (nodoActual.getAnterior() != null) {
+						nodoActual.getAnterior().setSiguiente(nodoActual.getSiguiente());
+
+					} else {
+						nodoActual.getSiguiente().setAnterior(null);
+						primero = nodoActual.getSiguiente();
+					}
+
+					if (nodoActual.getSiguiente() != null) {
+						nodoActual.getSiguiente().setAnterior(nodoActual.getAnterior());
+
+					} else {
+						nodoActual.getAnterior().setSiguiente(null);
+						ultimo = nodoActual.getAnterior();
+					}
+					numElementos--;
+
+				} else {
+					nodoActual = nodoActual.getSiguiente();
+				}
+
+			}
+		}
+		return posicionElemento!=-1;
 	}
 
 	@Override
@@ -110,12 +138,12 @@ public class ListaEnlazada<E> implements List<E> {
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public E get(int index) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -128,7 +156,7 @@ public class ListaEnlazada<E> implements List<E> {
 	@Override
 	public void add(int index, E element) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -141,16 +169,20 @@ public class ListaEnlazada<E> implements List<E> {
 	public int indexOf(Object o) {
 		int indice = -1;
 		int indiceTemp = 0;
-		
+
 		for (Nodo<E> x = primero; x != null && indice == -1; x = x.getSiguiente()) {
-			
-			if (o == null && x.getElemento() == null || x.getElemento().equals(o)) {
+
+			if (x.getElemento() == null) {
+				if (o == null) {
+					indice = indiceTemp;
+				}
+			} else if (x.getElemento().equals(o)) {
 				indice = indiceTemp;
 			}
-			
+
 			indiceTemp++;
 		}
-				
+
 		return indice;
 	}
 
@@ -177,53 +209,50 @@ public class ListaEnlazada<E> implements List<E> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+
 	protected class ListaEnlazadaIterator implements Iterator<E> {
 
 		private Nodo<E> ultimoDevuelto;
 		private int objetosDevueltos;
-		
+
 		public ListaEnlazadaIterator() {
 			objetosDevueltos = 0;
 		}
-		
+
 		@Override
 		public boolean hasNext() {
 			/*
-			 * ListaEnlazada.this hace referencia al objeto ListaEnlazada
-			 * que envuelve a este iterador en concreto. En este caso, al 
-			 * no haber conflicto de nombres con la clase interna, no sería
-			 * necesario y se podría obviar.
+			 * ListaEnlazada.this hace referencia al objeto ListaEnlazada que envuelve a
+			 * este iterador en concreto. En este caso, al no haber conflicto de nombres con
+			 * la clase interna, no sería necesario y se podría obviar.
 			 */
 			return objetosDevueltos < ListaEnlazada.this.numElementos;
 		}
 
 		@Override
 		public E next() {
-			
+
 			// Esta comprobación es equivalente a la realizada abajo
 //			if (objetosDevueltos >= numElementos) {
 //				throw new NoSuchElementException();
 //			}
-			
+
 			if (ultimoDevuelto == null) {
 				ultimoDevuelto = primero;
-			}
-			else {
+			} else {
 				ultimoDevuelto = ultimoDevuelto.getSiguiente();
 			}
-			
+
 			if (ultimoDevuelto == null) {
 				throw new NoSuchElementException();
 			}
-			
+
 			// Vamos a devolver un objeto más
 			objetosDevueltos++;
-			
+
 			return ultimoDevuelto.getElemento();
 		}
-		
+
 	}
 
 }

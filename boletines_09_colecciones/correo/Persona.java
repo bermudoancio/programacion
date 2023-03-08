@@ -136,6 +136,8 @@ public abstract class Persona {
 			}
 		});
 		
+		//this.mensajes.sort((a,b) -> a.getRemitente().getNombre().compareTo(b.getRemitente().getNombre()));
+		
 		return this.mostrarMensajes();
 	}	
 	

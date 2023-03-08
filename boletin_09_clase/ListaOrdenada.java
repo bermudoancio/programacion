@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class ListaOrdenada {
 	LinkedList<Integer> lista = new LinkedList<Integer>();
-
+	
 	public void insertarEnOrden(Integer nuevo) {
 		int pos = buscarSuSito(nuevo);
 		lista.add(pos, nuevo);
