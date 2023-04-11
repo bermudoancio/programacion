@@ -5,16 +5,37 @@ import java.util.Scanner;
 
 public class Principal {
 
-	private static final int OPCION_SALIR = 6;
+	private static final int OPCION_SALIR = 7;
 	private static Scanner teclado = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
 		int opcion;
 		FlotaVehiculos flotaVehiculos;
-
+		
 		try {
 			flotaVehiculos = new FlotaVehiculos();
+			
+			Furgoneta v1 = new Furgoneta("1234ABC", TipoGama.ALTA, 1500);
+			Furgoneta v2 = new Furgoneta("3124LLB", TipoGama.MEDIA, 900);
+			Furgoneta v3 = new Furgoneta("9764AAB", TipoGama.BAJA, 2000);
+			Coche v4 = new Coche("9431GDZ", TipoGama.ALTA, TipoCombustible.DIESEL);
+			Coche v5 = new Coche("2297ANB", TipoGama.ALTA, TipoCombustible.GASOLINA);
+			Coche v6 = new Coche("8566BZE", TipoGama.BAJA, TipoCombustible.GASOLINA);
+			Microbus v7 = new Microbus("2463ÑÑP", TipoGama.BAJA, 15);
+			Microbus v8 = new Microbus("1974LLO", TipoGama.MEDIA, 10);
+			Microbus v9 = new Microbus("6471UOR", TipoGama.ALTA, 20);
+			
+			flotaVehiculos.introducirVehiculo(v1);
+			flotaVehiculos.introducirVehiculo(v2);
+			flotaVehiculos.introducirVehiculo(v3);
+			flotaVehiculos.introducirVehiculo(v4);
+			flotaVehiculos.introducirVehiculo(v5);
+			flotaVehiculos.introducirVehiculo(v6);
+			flotaVehiculos.introducirVehiculo(v7);
+			flotaVehiculos.introducirVehiculo(v8);
+			flotaVehiculos.introducirVehiculo(v9);
+			
 			do {
 				opcion = mostrarMenu();
 				tratarMenu(opcion, flotaVehiculos);
@@ -65,6 +86,15 @@ public class Principal {
 				mostrarOrdenadosPorGama(flotaVehiculos);
 				break;
 			}
+			
+			case 6: {
+				System.out.println("Introduce número de días");
+				int numDias = Integer.parseInt(teclado.nextLine());
+				System.out.println("Introduce el precio mínimo");
+				double precioMin = Double.parseDouble(teclado.nextLine());
+				mostrarOrdenadoPorPrecioAlquiler(flotaVehiculos, numDias, precioMin);
+				break;
+			}
 		}
 			
 		} catch (VehiculoException e) {
@@ -73,6 +103,19 @@ public class Principal {
 
 	}
 	
+	private static void mostrarOrdenadoPorPrecioAlquiler(FlotaVehiculos flotaVehiculos, int numDias, double precioMin) {
+		flotaVehiculos.listadoOrdenadoPorPrecio(numDias, precioMin)
+		.forEach(v -> {
+			try {
+				System.out.printf("%s: %.2f\n", v, v.calcularAlquiler(numDias));
+			} catch (VehiculoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		
+	}
+
 	private static void mostrarOrdenadosPorMatricula(FlotaVehiculos flota) {
 		for (Vehiculo v: flota.listadoOrdenadoMatriculas()) {
 			System.out.println(v);
@@ -221,6 +264,7 @@ public class Principal {
 			System.out.println("3.-Consultar Vehiculos ordenados por matrícula ");
 			System.out.println("4.-Consultar furgonetas ordenados por PMA");
 			System.out.println("5.-Consultar vehiculos ordenados por gama");
+			System.out.println("6.-Consultar vehiculos ordenados por precio");
 			try {
 				op = Integer.parseInt(teclado.nextLine());
 			} catch (NumberFormatException e) {

@@ -28,6 +28,8 @@ public class Agenda {
 		try (FileReader fr = new FileReader (archivo); 
 				BufferedReader br = new BufferedReader(fr)) { 
 		    String l;
+		    //ME SALTO LA PRIMERA LÍNEA
+		    br.readLine();
 		    while ((l = br.readLine()) != null) {
 		    	Matcher m = p.matcher(l);
 		    	/*

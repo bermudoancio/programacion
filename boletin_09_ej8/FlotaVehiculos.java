@@ -60,6 +60,29 @@ public class FlotaVehiculos {
 		
 	}
 	
+	public List<Vehiculo> listadoOrdenadoPorPrecio(int dias, double minPrecio) {
+		return this.vehiculos.values().stream()
+				.filter(v -> {
+					boolean pasa = false;
+					try {
+						pasa = v.calcularAlquiler(dias) >= minPrecio;
+					} catch (VehiculoException e1) {
+						
+					}
+					return pasa;
+				})
+				.sorted((v1, v2) -> {
+					int orden = 0;
+					try {
+						orden = (int)(v1.calcularAlquiler(dias) - v2.calcularAlquiler(dias));
+					} catch (VehiculoException e) {
+						
+					}
+					return orden;
+				})
+				.toList();
+	}
+	
 	public List<Vehiculo> listadoFurgonetasOrdenadoPMA() {
 		List<Vehiculo> l = new ArrayList<Vehiculo>(this.vehiculos.values());
 		
