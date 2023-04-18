@@ -19,6 +19,12 @@
 			<modelo>Vitara</modelo>
 			<cilindrada>1.9</cilindrada>
 		</coche>
+		
+		<moto id="4">
+			<marca>Yamaha</marca>
+			<modelo>MT-07</modelo>
+			<cilindrada>689cc</cilindrada>
+		</moto>
 	</sede1>
 	<sede2>
 		<coche id="7" precio="20000">

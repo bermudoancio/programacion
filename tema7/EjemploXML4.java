@@ -28,7 +28,7 @@ public class EjemploXML4 {
 			// 3º Procesamos el documento (almacenado en un archivo) y lo convertimos en un
 			// árbol DOM.
 
-			Document documento = db.parse("./src/tema7/concesionario.xml");
+			Document documento = db.parse("./src/tema7/concesionarioEjemplo3.xml");
 
 			Element e = documento.getDocumentElement();
 			// Normaliza los elementos del documento

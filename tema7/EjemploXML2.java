@@ -52,12 +52,12 @@ public class EjemploXML2 {
 					System.out.println("Cilindrada: " + eElement.getElementsByTagName("cilindrada").item(0).getTextContent());
 				}
 			}
-			
+						
 			System.out.println("****************************");
 			
 			// Obtenemos la lista de todos los nodos que se llamen "coche"
 			NodeList sede1 = documento.getElementsByTagName("sede1");
-			nList = ((Element)sede1.item(0)).getElementsByTagName("coche");
+			nList = ((Element)sede1.item(0)).getElementsByTagName("moto");
 			//NodeList nList = e.getChildNodes();
 			System.out.println("Número de coches: " + nList.getLength());
 

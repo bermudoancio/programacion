@@ -28,7 +28,7 @@ public class EjemploXML3 {
 			// 3º Procesamos el documento (almacenado en un archivo) y lo convertimos en un
 			// árbol DOM.
 
-			Document documento = db.parse("./src/tema7/concesionario.xml");
+			Document documento = db.parse("./src/tema7/concesionarioEjemplo3.xml");
 
 			Element e = documento.getDocumentElement();
 			// Normaliza los elementos del documento
@@ -46,6 +46,8 @@ public class EjemploXML3 {
 			 * Por tanto, empecemos creando el elemento coche
 			 */
 			Element nuevoCoche = documento.createElement("coche");
+			
+			//<coche></coche>
 			
 			// El coche tiene un atributo id
 			Attr atributo = documento.createAttribute("id");
