@@ -100,7 +100,7 @@ public class Ej02 {
 			for (int i = 0; i < list.getLength(); i++) {
 				Element div = (Element) list.item(i);
 
-				if (div.getAttribute("id").equals("menu-principal")) {
+				if (div.hasAttribute("id") && div.getAttribute("id").equals("menu-principal")) {
 					// Busca todos los hijos, nietos...
 					NodeList listaLi = div.getElementsByTagName("li");
 

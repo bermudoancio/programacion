@@ -27,7 +27,7 @@ public class Ej03 {
 			DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 
 			// Obtenemos el documento a través de la ruta
-			Document doc = db.parse("./src/ejercicio3/desayuno.xml");
+			Document doc = db.parse("./src/boletin_10/xml/desayuno.xml");
 
 			// Obtenemos un listado de los nodos "food"
 			NodeList listaComidas = doc.getElementsByTagName("food");
@@ -202,7 +202,7 @@ public class Ej03 {
 		}
 
 		// Se guarda el documento
-		guardaDoc(doc, "./src/ejercicio3/desayunoSaludable.xml");
+		guardaDoc(doc, "./src/boletin_10/xml/desayunoSaludable.xml");
 
 	}
 

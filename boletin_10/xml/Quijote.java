@@ -16,17 +16,48 @@ public class Quijote {
 		//capitalizar();
 
 		//buscaPalabrasMasCaracteres(8);
-		
-		menosDeXPalabras(15);
+
+		//menosDeXPalabras(15);
+
+		frasesDeMenosDeXPalabras(15);
 	}
-	
-	private static void menosDeXPalabras(int i) {
-		try (BufferedReader reader = new BufferedReader(new FileReader("./src/boletin_10/xml/quijote.txt"))) {
-							
+
+	private static void frasesDeMenosDeXPalabras(int i){
+		try (BufferedReader reader = new BufferedReader(new FileReader("./src/boletin_10/xml/quijoteSinNum.txt"))) {
+
 			String linea;
-			
+
+			Pattern p = Pattern.compile("([^\\.]+)");
+			Pattern p2 = Pattern.compile("([^\\p{Z}]+)");
+
+			while((linea = reader.readLine())!=null) {
+				Matcher m = p.matcher(linea);
+				while (m.find()) {
+					String frase = m.group();
+					Matcher m2 = p2.matcher(frase);
+					if (m2.results().count() < i){
+						System.out.println(frase);
+					}
+				}
+			}
+
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private static void menosDeXPalabras(String frase, int i) {
+		try (BufferedReader reader = new BufferedReader(new FileReader("./src/boletin_10/xml/quijoteSinNum.txt"))) {
+
+			String linea;
+
 			Pattern p = Pattern.compile("\\p{L}+");
-			
+
 			while((linea = reader.readLine())!=null) {
 //					Matcher m = p.matcher(linea);
 //					if(m.find()) {
@@ -34,13 +65,13 @@ public class Quijote {
 //							System.out.println(linea);
 //						}
 //					}
-				
+
 				if(linea.split("\\p{L}+").length < 19) {
 					System.out.println(linea);
 				}
 			}
-			
-			
+
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,21 +82,19 @@ public class Quijote {
 	}
 
 	public static void buscaPalabrasMasCaracteres(int i) {
-		try (BufferedReader reader = new BufferedReader(new FileReader("./src/boletin_10/xml/quijote.txt"))) {
+		try (BufferedReader reader = new BufferedReader(new FileReader("./src/boletin_10/xml/quijoteSinNum.txt"))) {
 			Pattern p = Pattern.compile("\\p{L}{" + i + ",}");
-			
-			String linea;			
+
+			String linea;
 			while ((linea = reader.readLine()) != null) {
 				Matcher m = p.matcher(linea);
 				m.results().map(e -> e.group()).forEach(System.out::println);
 			}
 
-		} 
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		catch (IOException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -73,18 +102,18 @@ public class Quijote {
 
 	public static void capitalizar() {
 		Pattern p = Pattern.compile("\\p{L}+");
-		
-		try (BufferedReader reader = new BufferedReader(new FileReader("./src/boletin_10/xml/quijote.txt"));
-				PrintWriter out = 
-						new PrintWriter(
-								new BufferedWriter(
-										new FileWriter("./src/boletin_10/xml/quijoteCap.txt")))) {
+
+		try (BufferedReader reader = new BufferedReader(new FileReader("./src/boletin_10/xml/quijoteSinNum.txt"));
+			 PrintWriter out =
+					 new PrintWriter(
+							 new BufferedWriter(
+									 new FileWriter("./src/boletin_10/xml/quijoteCap.txt")))) {
 			String linea;
-			
+
 			while ((linea = reader.readLine()) != null) {
 				StringBuilder sb = new StringBuilder(linea.length());
 				Matcher m = p.matcher(linea);
-				
+
 				/*
 				 * La primera posición desde donde se añadirá todo aquello que no sea texto.
 				 * Comienza en 0 porque si una línea comenzara, por ejemplo, con unas comillas, al no
@@ -111,20 +140,18 @@ public class Quijote {
 					 */
 					last = m.end();
 				}
-				
+
 				out.println(sb.toString());
 			}
-		} 
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		catch (IOException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static String capitalize(String s) {
 		return Character.toUpperCase(s.charAt(0)) + s.toLowerCase().substring(1);
 	}

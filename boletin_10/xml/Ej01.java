@@ -81,7 +81,7 @@ public class Ej01 {
 		     	// 1� Creamos una instancia de la clase File para acceder al archivo donde
 				// guardaremos el XML.
 
-				File f = new File("D:\\Personal\\Instituto\\Asignaturas\\Programacion\\Tema 7\\personas.xml");
+				File f = new File("./src/Tema 7/personas.xml");
 
 				// 2� Creamos una nueva instancia del transformador a trav�s de la f�brica de
 				// transformadores.
@@ -91,7 +91,7 @@ public class Ej01 {
 				// 3� Establecemos algunas opciones de salida, como por ejemplo, la codificaci�n
 				// de salida.
 
-				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+				//transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
 				transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 
