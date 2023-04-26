@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class PasoAMayusculas {
     public static void main(String[] args) {
-        String rutaFichero = "C:\\Desarrollo\\Workspace\\Boletines\\src\\tema7\\expresiones_regulares\\quijote.txt";
+        String rutaFichero = "C:\\Desarrollo\\Workspace\\Boletines\\src\\tema7\\expresiones_regulares\\quijoteSinNum.txt";
         String rutaSalida = "C:\\Desarrollo\\Workspace\\Boletines\\src\\tema7\\expresiones_regulares\\quijoteCap.txt";
 
         File ficheroOrigen = new File(rutaFichero);

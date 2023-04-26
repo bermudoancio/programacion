@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 public class ExpresionRegularCharset {
 	
-	private static final File fichero = new File ("./src/boletin_10/xml/quijote.txt");
+	private static final File fichero = new File ("./src/boletin_10/xml/quijoteSinNum.txt");
 	
 	//private static BufferedReader lector;
 
@@ -37,7 +37,7 @@ public class ExpresionRegularCharset {
 		try(BufferedReader lector = new BufferedReader(new FileReader(fichero, StandardCharsets.UTF_8))){
 			
 			String linea;
-			Pattern patron = Pattern.compile("([Rr]az[óo]n)");
+			Pattern patron = Pattern.compile("([Rr]az[ï¿½o]n)");
 			
 			while ((linea = lector.readLine()) != null) {
 				Matcher m = patron.matcher(linea);

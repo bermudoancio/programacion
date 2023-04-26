@@ -43,7 +43,7 @@ public class EjemploXML6 {
 			// 3º Procesamos el documento (almacenado en un archivo) y lo convertimos en un
 			// árbol DOM.
 
-			Document documento = db.parse("./src/tema7/concesionario.xml");
+			Document documento = db.parse("./src/tema7/concesionarioEjemplo3.xml");
 
 			Element e = documento.getDocumentElement();
 			// Normaliza los elementos del documento
@@ -122,7 +122,7 @@ public class EjemploXML6 {
 			// 1º Creamos una instancia de la clase File para acceder al archivo donde
 			// guardaremos el XML.
 
-			File f = new File("./src/tema7/concesionarioModificado.xml");
+			File f = new File("./src/tema7/concesionarioModificado2.xml");
 
 			// 2º Creamos una nueva instancia del transformador a través de la fábrica de
 			// transformadores.
@@ -132,7 +132,7 @@ public class EjemploXML6 {
 			// 3º Establecemos algunas opciones de salida, como por ejemplo, la codificación
 			// de salida.
 
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			//transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
 			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 

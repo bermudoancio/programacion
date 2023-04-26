@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class EjRegex01 {
 
-	private static final File fichero = new File("./src/boletin_10/quijote.txt");
+	private static final File fichero = new File("./src/boletin_10/quijoteSinNum.txt");
 
 	// private static BufferedReader lector;
 
