@@ -1,7 +1,9 @@
-import javax.xml.transform.Result;
+package tema8.bbdd;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import tema8.db.DataBaseConnection;
 
 public class Ejercicio10 {
 
@@ -16,7 +18,7 @@ public class Ejercicio10 {
     }
 
     public static boolean insertarProducto() {
-        try (Connection con = DataBaseConnection.getInstance().getCon();
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
              PreparedStatement consultaPreparada = con.prepareStatement("INSERT INTO products values (?,?,?,?,?,?,?,?,?)");
              PreparedStatement consultaCategorias = con.prepareStatement("SELECT productLine from productLines");
              PreparedStatement consultaCodigos = con.prepareStatement("SELECT productCode from products where productCode = ?");
@@ -74,11 +76,7 @@ public class Ejercicio10 {
             float msrp = Float.parseFloat(sc.nextLine());
             consultaPreparada.setFloat(9, msrp);
 
-            if (consultaPreparada.executeUpdate() > 0){
-                return true;
-            } else {
-                return false;
-            }
+            return consultaPreparada.executeUpdate() > 0;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
