@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public class Agenda {
 	public static void main(String[] args) {
 		
-		File archivo = new File ("./src/tema7/expresiones_regulares/agenda.txt");
+		File archivo = new File ("./expresiones_regulares/agenda.txt");
 		
 		// Este es el patrón a buscar
 		//Pattern p = Pattern.compile("^\\d+:\\w+:\\d{9}$");
@@ -23,7 +23,8 @@ public class Agenda {
 		 * [a-zA-ZÀ-ÿ\u00f1\u00d1]
 		 */
 		//Pattern p = Pattern.compile("^(\\d+):([a-zA-ZÀ-ÿ\u00f1\u00d1]+):(\\d{9})$");
-		Pattern p = Pattern.compile("^(\\d+):([A-Z][a-z]+):([6-9]\\d{8})$");
+		//Pattern p = Pattern.compile("^(\\d+):([A-Z][a-z]+):([6-9]\\d{8})$");
+		Pattern p = Pattern.compile("^(\\d+):((?:\\w+\\s)*\\w+):([6-9]\\d{8})$");
 
 		try (FileReader fr = new FileReader (archivo); 
 				BufferedReader br = new BufferedReader(fr)) { 

@@ -40,7 +40,7 @@ public class Diccionario22 {
 	public List<String> listadoPalabras(String cadena){
 		
 		return diccionario.keySet().stream()
-				.filter(p -> p.startsWith(cadena))
+				.filter(String::startsWith)
 				.sorted()
 				.collect(Collectors.toList());
 	}

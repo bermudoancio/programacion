@@ -28,11 +28,11 @@ public class EjemploXML2 {
 			// 3º Procesamos el documento (almacenado en un archivo) y lo convertimos en un
 			// árbol DOM.
 
-			Document documento = db.parse("./src/tema7/concesionario.xml");
+			Document documento = db.parse("concesionario.xml");
 
 			Element e = documento.getDocumentElement();
 			// Normaliza los elementos del documento
-			e.normalize();
+			//e.normalize();
 			
 			// Obtenemos la lista de todos los nodos que se llamen "coche"
 			NodeList nList = documento.getElementsByTagName("coche");
@@ -59,7 +59,7 @@ public class EjemploXML2 {
 			NodeList sede1 = documento.getElementsByTagName("sede1");
 			nList = ((Element)sede1.item(0)).getElementsByTagName("moto");
 			//NodeList nList = e.getChildNodes();
-			System.out.println("Número de coches: " + nList.getLength());
+			System.out.println("Número de motos: " + nList.getLength());
 
 			
 			for (int i = 0; i < nList.getLength(); i++) {
@@ -68,7 +68,7 @@ public class EjemploXML2 {
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
 
-					System.out.println("\nCoche id: " + eElement.getAttribute("id"));
+					System.out.println("\nMoto id: " + eElement.getAttribute("id"));
 					System.out.println("Marca: " + eElement.getElementsByTagName("marca").item(0).getTextContent());
 					
 					/*

@@ -3,22 +3,28 @@ package boletin_08_herencia;
 public class Vehiculo {
   
   /**
-   * enumera las distintas categorías de gamas existentes
+   * enumera las distintas categorï¿½as de gamas existentes
    * @author Peter
    *
    */
   public static enum Gama {
     
     //posibles valores para las distintas gamas
-    BAJA(30), MEDIA(40), ALTA(50);
+    BAJA(30, "Gama baja"), MEDIA(40, "Gama media"), ALTA(50);
     
     //precio asignado a cada gama
     private double precio;
+    private String nombreGama;
     
     //constructor
-    private Gama(double precio) {
+    private Gama(double precio, String nombre) {
+
       this.precio = precio;
+      this.nombreGama = nombre;
+
     }
+
+    public 
     
     //devuelve el precio asignado a cada gama
     public double getPrecio() {
@@ -35,24 +41,24 @@ public class Vehiculo {
 	  GASOLINA, DIESEL 
   }
   
-  //gama del vehículo
+  //gama del vehï¿½culo
   private final Gama gama;
-  //combustible usado por el vehículo
+  //combustible usado por el vehï¿½culo
   private final TipoCombustible combustibleUsado;
-  //matrícula del vehículo
+  //matrï¿½cula del vehï¿½culo
   private String matricula;
   
   
   /**
-   * Constructor para vehículo
+   * Constructor para vehï¿½culo
    *
    */
   public Vehiculo(String matricula, Gama gama, TipoCombustible combustible) throws InvalidValueException {
-    //lanza excepción si la matrícula en null, vacia o solo tiene espacios en blanco
+    //lanza excepciï¿½n si la matrï¿½cula en null, vacia o solo tiene espacios en blanco
     if(matricula == null || matricula.isEmpty() || matricula.isBlank()) {
-      throw new InvalidValueException("Matrícula inválida.");
+      throw new InvalidValueException("Matrï¿½cula invï¿½lida.");
     }
-    //lanza excepción si gama o combustible son null
+    //lanza excepciï¿½n si gama o combustible son null
     if(gama == null || combustible == null) {
       throw new InvalidValueException(gama == null ? "Gama es null." : "Tipo de combustible es null.");
     }
@@ -72,7 +78,7 @@ public class Vehiculo {
   }
   
   public double getPrecioBase() {
-    //extrae el precio base en función del tipo de gama al que pertenece
+    //extrae el precio base en funciï¿½n del tipo de gama al que pertenece
     return this.gama.getPrecio();
   }
   
@@ -83,7 +89,7 @@ public class Vehiculo {
   
   public double getPrecio(int dias) throws InvalidValueException {
     if(dias <= 0) {
-      throw new InvalidValueException("Se debe alquilar por al menos un día.");
+      throw new InvalidValueException("Se debe alquilar por al menos un dï¿½a.");
     }
     
     return this.getPrecioBase() * dias;

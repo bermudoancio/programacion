@@ -12,10 +12,10 @@ public class EjemploLectura4 implements Serializable{
 	private transient String password;
 	
 	public static void main(String[] args) throws IOException {
-		File archivo = new File(".\\src\\tema7\\xanadu.txt");
+		File archivo = new File(".\\xanadu.txt");
 		FileReader fr = new FileReader(archivo);
 		BufferedReader br = new BufferedReader(fr);
-		PrintWriter os = new PrintWriter(new FileWriter(".\\src\\tema7\\salida4.txt", true));
+		PrintWriter os = new PrintWriter(new FileWriter(".\\salida4.txt", true));
 		/*
 		 * A partir de Java 9: observa que podemos declarar el objeto anteriormente y
 		 * simplemente añadirlo al bloque try with resources

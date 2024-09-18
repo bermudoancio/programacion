@@ -28,7 +28,7 @@ public class EjemploXML5 {
 			// 3º Procesamos el documento (almacenado en un archivo) y lo convertimos en un
 			// árbol DOM.
 
-			Document documento = db.parse("./src/tema7/concesionario.xml");
+			Document documento = db.parse("concesionario.xml");
 
 			Element e = documento.getDocumentElement();
 			// Normaliza los elementos del documento
@@ -63,21 +63,18 @@ public class EjemploXML5 {
 			boolean encontrado = false;
 			
 			for (int temp = 0; temp < nListBusqueda.getLength() && !encontrado; temp++) {
-				Node nNode = nListBusqueda.item(temp);
+				Element eElement = (Element) nListBusqueda.item(temp);
 
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) nNode;
-					
-					/*
-					 * Si el atributo id coincide con el valor buscado, indicamos al nodo padre (que
-					 * lo obtenemos mediante la llamada getParentNode()), que debe borrar la instancia
-					 * buscada de su lista de hijos. 
-					 */
-					if (eElement.getAttribute("id").equals("2")) {
-						eElement.getParentNode().removeChild(eElement);
-						encontrado = true;
-					}
+				/*
+				 * Si el atributo id coincide con el valor buscado, indicamos al nodo padre (que
+				 * lo obtenemos mediante la llamada getParentNode()), que debe borrar la instancia
+				 * buscada de su lista de hijos.
+				 */
+				if (eElement.getAttribute("id").equals("2")) {
+					eElement.getParentNode().removeChild(eElement);
+					encontrado = true;
 				}
+
 			}
 			
 						

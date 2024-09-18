@@ -10,11 +10,9 @@ import java.io.*;
 public class ReadMP3Tags {
  
     static void testReadMP3(String filePath) {
-        try {
- 
-            String mode = "r";
-            RandomAccessFile randomFile = new RandomAccessFile(filePath, mode);
- 
+        String mode = "r";
+        try (RandomAccessFile randomFile = new RandomAccessFile(filePath, mode)) {
+
             long length = randomFile.length();
  
             randomFile.seek(length - 128);
@@ -62,8 +60,6 @@ public class ReadMP3Tags {
             String comment = new String(byteArray);
             System.out.println("Comment: " + comment);
  
-            randomFile.close();
- 
         } catch (IOException ex) {
             System.err.println("I/O Error: " + ex);
         }
@@ -72,7 +68,7 @@ public class ReadMP3Tags {
  
     public static void main(String[] args) {
 
-        String filePath = "./src/tema7/0103. Fun Time - AShamaluevMusic.mp3";
+        String filePath = "./0103. Fun Time - AShamaluevMusic.mp3";
         testReadMP3(filePath);
     }
 }

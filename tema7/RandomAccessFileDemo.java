@@ -4,9 +4,9 @@ import java.io.*;
 
 public class RandomAccessFileDemo {
 	public static void main(String[] args) {
-		try {
+		try (RandomAccessFile raf = new RandomAccessFile("./hola.txt", "rw")) {
 			// create a new RandomAccessFile with filename test
-			RandomAccessFile raf = new RandomAccessFile("./src/tema7/hola.txt", "rw");
+
 			// write something in the file
 			raf.writeUTF("Hello World");
 			// set the file pointer at 0 position

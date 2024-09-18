@@ -11,8 +11,8 @@ public class EjemploLectura3 {
 		BufferedReader inputStream = null;
 		PrintWriter outputStream = null;
 		try {
-			inputStream = new BufferedReader(new FileReader(".\\src\\tema7\\xanadu.txt"));
-			outputStream = new PrintWriter(new FileWriter(".\\src\\tema7\\characteroutput.txt"));
+			inputStream = new BufferedReader(new FileReader(".\\xanadu.txt"));
+			outputStream = new PrintWriter(new FileWriter(".\\characteroutput.txt"));
 			String l;
 			while ((l = inputStream.readLine()) != null) {
 				System.out.println(l);

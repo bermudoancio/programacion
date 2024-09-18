@@ -28,12 +28,12 @@ public class EjemploXML3 {
 			// 3º Procesamos el documento (almacenado en un archivo) y lo convertimos en un
 			// árbol DOM.
 
-			Document documento = db.parse("./src/tema7/concesionarioEjemplo3.xml");
+			Document documento = db.parse("concesionarioEjemplo3.xml");
 
 			Element e = documento.getDocumentElement();
 			// Normaliza los elementos del documento
 			e.normalize();
-			
+
 			/*
 			 * Vamos a añadir un nuevo coche.
 			 * Un coche está formado por:
@@ -46,24 +46,24 @@ public class EjemploXML3 {
 			 * Por tanto, empecemos creando el elemento coche
 			 */
 			Element nuevoCoche = documento.createElement("coche");
-			
+
 			//<coche></coche>
-			
+
 			// El coche tiene un atributo id
 			Attr atributo = documento.createAttribute("id");
-			
+
 			// Para obtener el nuevo valor de id, obtendremos el id del último coche introducido
 			int newId = Integer.parseInt(EjemploXML3.getLastId(documento)) + 1;
 			atributo.setNodeValue(Integer.toString(newId));
-			
+
 			// Ahora, enlazamos el atributo al elemento
 			nuevoCoche.setAttributeNode(atributo);
-			
+
 			// Equivalente a lo anterior
 			//nuevoCoche.setAttribute("id", newId + "");
-			
+
 			// En este punto tengo esto: <coche id="4"></coche>
-			
+
 			/*
 			 * Lo anterior es equivalente a esto:
 			 * nuevoCoche.setAttribute("id", Integer.toString(newId));
@@ -73,7 +73,9 @@ public class EjemploXML3 {
 			*/
 			Element marca = documento.createElement("marca");
 			marca.setTextContent("Honda");
-			
+
+			//<marca>honda</marca>
+
 			/*
 			 * Existe otra forma de crear un nodo con texto que sería la siguiente:
 			 * Element etiquetaMarca = documento.createElement("marca");
@@ -82,25 +84,25 @@ public class EjemploXML3 {
 			 * nuevoCoche.appendChild(etiquetaMarca);
 			 */
 
-			
+
 			Element modelo = documento.createElement("modelo");
 			modelo.setTextContent("CR-V");
-			
+
 			Element cilindrada = documento.createElement("cilindrada");
 			cilindrada.setTextContent("1.9");
-			
+
 			// Ahora, añadimos estos 3 nodos al nodo coche
 			nuevoCoche.appendChild(marca);
 			nuevoCoche.appendChild(modelo);
 			nuevoCoche.appendChild(cilindrada);
-			
+
 			/*
 			 * Por último, añadimos el nuevo coche al documento. Como he comentado
 			 * podríamos haberlo incluido justo al crearlo
 			 */
 			documento.getDocumentElement().appendChild(nuevoCoche);
-			
-			
+
+
 			// Mostramos el resultado
 			// Obtenemos la lista de todos los nodos que se llamen "coche"
 			NodeList nList = documento.getElementsByTagName("coche");
@@ -126,7 +128,7 @@ public class EjemploXML3 {
 		}
 
 	}
-	
+
 	/**
 	 * Devuelve el valor del atributo id del último nodo del documento XML
 	 * @param doc
@@ -141,8 +143,7 @@ public class EjemploXML3 {
 		while (child != null && !found) {
 			if (child.getNodeType() == Node.ELEMENT_NODE) {
 				found = true;
-			}
-			else {
+			} else {
 				child = child.getPreviousSibling();
 			}
 		}
@@ -150,6 +151,10 @@ public class EjemploXML3 {
 		lastId = child.getAttributes().getNamedItem("id").getNodeValue();
 
 		return lastId;
+
+		/*NodeList coches = doc.getElementsByTagName("coche");
+
+		return ((Element)coches.item(coches.getLength() - 1)).getAttribute("id");*/
 	}
 
 }

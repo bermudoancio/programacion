@@ -11,9 +11,9 @@ public class EjemploLectura2 {
 		FileReader inputStream = null;
 		FileWriter outputStream = null;
 		try {
-			inputStream = new FileReader(".\\src\\tema7\\xanadu.txt");
+			inputStream = new FileReader(".\\xanadu.txt");
 			
-			outputStream = new FileWriter(".\\src\\tema7\\outagain.txt");
+			outputStream = new FileWriter(".\\outagain.txt");
 			int c;
 			while ((c = inputStream.read()) != -1) {
 				System.out.println(c);

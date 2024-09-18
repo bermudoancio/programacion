@@ -28,7 +28,7 @@ public class EjemploXML4 {
 			// 3º Procesamos el documento (almacenado en un archivo) y lo convertimos en un
 			// árbol DOM.
 
-			Document documento = db.parse("./src/tema7/concesionarioEjemplo3.xml");
+			Document documento = db.parse("concesionarioEjemplo3.xml");
 
 			Element e = documento.getDocumentElement();
 			// Normaliza los elementos del documento
@@ -67,6 +67,7 @@ public class EjemploXML4 {
 			NamedNodeMap attribute = primerCoche.getAttributes();
             Node nodeAttr = attribute.getNamedItem("id");
             nodeAttr.setTextContent("10");
+			//primerCoche.setAttribute("id", "10");
 			
 			// Volvemos a mostrar la lista, ahora con los elementos modificados
 			NodeList nList2 = documento.getElementsByTagName("coche");
